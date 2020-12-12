@@ -16,6 +16,8 @@ public class FileReaders {
             String line;
 
             while((line = reader.readLine()) != null) {
+                System.out.println(line);
+
                 String[] splitLine = line.split("contain");
                 String[] bagColor = splitLine[0].split(" ");
                 String bag = bagColor[0] + bagColor[1];

@@ -50,6 +50,7 @@ public class Day7 {
             }
         }
 
+// Recursive loop only on above part??
         if (!results.isEmpty()) {
             resultsList.add(results);
 
