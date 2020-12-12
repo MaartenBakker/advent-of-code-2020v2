@@ -1,6 +1,4 @@
-package com.maartenmusic.day6;
-
-import com.maartenmusic.day4.Limits;
+package com.maartenmusic.day4;
 
 import java.util.ArrayList;
 import java.util.List;

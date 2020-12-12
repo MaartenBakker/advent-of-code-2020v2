@@ -1,14 +1,42 @@
 package com.maartenmusic.util;
 
-import com.maartenmusic.day6.Passport;
+import com.maartenmusic.day4.Passport;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class FileReaders {
+
+    public static Map<String, ArrayList<String>> readTxtFileIntoMapOfBagsAndColors(File file) {
+        Map<String, ArrayList<String>> bagMap = new HashMap<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            while((line = reader.readLine()) != null) {
+                String[] splitLine = line.split("contain");
+                String[] bagColor = splitLine[0].split(" ");
+                String bag = bagColor[0] + bagColor[1];
+
+                ArrayList<String> colorList = new ArrayList<>();
+                String[] colors = splitLine[1].split(",");
+                for(String color: colors) {
+                    String[] splitColor = color.split(" ");
+                    colorList.add(splitColor[2] + splitColor[3]);
+                }
+
+                bagMap.put(bag, colorList);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return bagMap;
+
+    }
 
     public static List<Integer> readTxtFileIntoArrayListOfInteger(File file) {
 

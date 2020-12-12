@@ -1,4 +1,4 @@
-package com.maartenmusic.day6;
+package com.maartenmusic.day4;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +9,7 @@ public class Passport {
 
     public Passport(String rawData) {
         this.rawData = rawData;
+        generateMappedData();
     }
 
     public String getRawData() {
