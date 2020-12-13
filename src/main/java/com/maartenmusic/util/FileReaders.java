@@ -9,6 +9,40 @@ import java.util.*;
 
 public class FileReaders {
 
+
+    public static Map<String, Map<String, Integer>> readTxtFileIntoMapOfColorsAndColorAmounts(File file) {
+        Map<String, Map<String, Integer>> bagMap = new HashMap<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            while((line = reader.readLine()) != null) {
+
+                String[] splitLine = line.split("contain");
+                String[] bagColor = splitLine[0].split(" ");
+                String bag = bagColor[0] + bagColor[1];
+
+                Map<String, Integer> bagAmountMap = new HashMap<>();
+                String[] colors = splitLine[1].split(",");
+                for(String color: colors) {
+                    String[] splitColor = color.split(" ");
+
+                    if(!splitColor[1].equals("no")) {
+                        bagAmountMap.put(splitColor[2] + splitColor[3]
+                                , Integer.parseInt(splitColor[1]));
+                    }
+                }
+
+                bagMap.put(bag, bagAmountMap);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return bagMap;
+    }
+
     public static Map<String, ArrayList<String>> readTxtFileIntoMapOfBagsAndColors(File file) {
         Map<String, ArrayList<String>> bagMap = new HashMap<>();
 
@@ -36,7 +70,6 @@ public class FileReaders {
         }
 
         return bagMap;
-
     }
 
     public static List<Integer> readTxtFileIntoArrayListOfInteger(File file) {

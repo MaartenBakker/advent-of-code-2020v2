@@ -6,8 +6,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class FileReadersTest {
 
     @Test
@@ -19,5 +17,20 @@ class FileReadersTest {
 
         rules.keySet().stream().sorted().forEach(System.out::println);
         rules.values().forEach(System.out::println);
+    }
+
+    @Test
+    void readTxtFileIntoMapOfColorsAndColorAmounts() {
+
+        File txtFile = new File(FilePathGenerator.getFilePath("day7"));
+        Map<String, Map<String, Integer>> rules = FileReaders.readTxtFileIntoMapOfColorsAndColorAmounts(txtFile);
+
+//        rules.keySet().stream().sorted().forEach(System.out::println);
+        rules.values().forEach(list -> {
+            for (Map.Entry<String, Integer> colorAmounts : list.entrySet()) {
+                System.out.println(colorAmounts.getKey() + " " + colorAmounts.getValue());
+            }
+        });
+
     }
 }
