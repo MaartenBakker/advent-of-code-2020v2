@@ -1,6 +1,8 @@
 package com.maartenmusic.util;
 
 import com.maartenmusic.day4.Passport;
+import com.maartenmusic.day8.Instruction;
+import com.maartenmusic.day8.Operation;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,6 +11,41 @@ import java.util.*;
 
 public class FileReaders {
 
+
+    public static List<Instruction> readTxtFileIntoListOfInstructions(File file) {
+        List<Instruction> instructions = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            while((line = reader.readLine()) != null) {
+
+                String[] splitLine = line.split(" ");
+                String operationString = splitLine[0];
+
+                Operation operation;
+
+                switch(operationString) {
+                    case "acc": operation = Operation.ACC;
+                        break;
+                    case "jmp": operation = Operation.JMP;
+                        break;
+                    case "nop": operation = Operation.NOP;
+                        break;
+                    default: operation = Operation.NOP;
+                }
+
+                int argument = Integer.parseInt(splitLine[1]);
+
+                instructions.add(new Instruction(operation, argument));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return instructions;
+    }
 
     public static Map<String, Map<String, Integer>> readTxtFileIntoMapOfColorsAndColorAmounts(File file) {
         Map<String, Map<String, Integer>> bagMap = new HashMap<>();

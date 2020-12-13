@@ -1,44 +1,22 @@
 package com.maartenmusic.day8;
 
+import com.maartenmusic.util.FilePathGenerator;
+import com.maartenmusic.util.FileReaders;
+
+import java.io.File;
+import java.util.List;
+
 public class Day8 {
 
-//    new Class Instruction
-//    Enum operation
-//    int argument
-//    int executionCount
-//
-//    read file into list of instructions
-//
-//    instructionExecutor.execute(0);
+    public static void main(String[] args) {
+        File txtFile = new File(FilePathGenerator.getFilePath("day8"));
 
-//
-//    new Class InstructionExecutor
-//    List<Instruction> instructionList = new ArrayList<>;
-//    private int position;
-//    private int acc;
-//
+        List<Instruction> instructions = FileReaders.readTxtFileIntoListOfInstructions(txtFile);
 
-//    public int execute(position);
-//    Instruction instruction is this.instructionList.get(position);
-//
-//    instruction.setExecutionCount = instruction.getExecutionCount + 1;
-//
-//    if(instruction.getExecutionCount > 1) {
-//      return this.acc;
-//    }
-//
-//    if(instruction.getOperation == acc) {
-//      acc += instruction.getArgument();
-//      return execute(position + 1);
-//    }
-//
-//    if(instruction.getOperation == jmp) {
-//        return execute(position + instruction.getArgument);
-//    }
-//
-//    if(instruction.getOperation == nop) {
-//          return execute(position + 1)
-//      }
-//
+        InstructionExecutor instructionExecutor = new InstructionExecutor(instructions);
+
+        System.out.println(instructionExecutor.execute(0));
+
+    }
 
 }

@@ -1,12 +1,29 @@
 package com.maartenmusic.util;
 
+import com.maartenmusic.day8.Day8;
+import com.maartenmusic.day8.Instruction;
+import com.maartenmusic.day8.Operation;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 class FileReadersTest {
+
+    @Test
+    void readTxtFileIntoListOfInstructions() {
+        File txtFile = new File("src/main/java/com/maartenmusic/day8/testInput.txt");
+
+        List<Instruction> instructions = FileReaders.readTxtFileIntoListOfInstructions(txtFile);
+
+        instructions.forEach(instruction -> {
+            System.out.println(instruction.getOperation());
+            System.out.println(instruction.getArgument());
+
+        });
+    }
 
     @Test
     void readTxtFileIntoMapOfBagsAndColors() {
