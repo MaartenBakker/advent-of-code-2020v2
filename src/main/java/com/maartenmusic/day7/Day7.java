@@ -16,25 +16,19 @@ public class Day7 {
 //    merge lists
 
     private static final Set<String> results = new HashSet<>();
-    private static int bagCount;
+    static int bagCount;
 
     public static void main(String[] args) {
-        File txtFile = new File("src/main/java/com/maartenmusic/day7/testInput.txt");
+
+        bagCount = 0;
+        File txtFile = new File(FilePathGenerator.getFilePath("day7"));
+
+        printResultOfPart1(txtFile);
+        printResultOfPart2(txtFile);
+    }
+
+    private static void printResultOfPart2(File txtFile) {
         Map<String, Map<String, Integer>> rules = FileReaders.readTxtFileIntoMapOfColorsAndColorAmounts(txtFile);
-        findTotalAmountOfBags("shinygold", rules);
-        System.out.println(bagCount-1);
-
-        bagCount = 0;
-
-        txtFile = new File("src/main/java/com/maartenmusic/day7/testInput2.txt");
-        rules = FileReaders.readTxtFileIntoMapOfColorsAndColorAmounts(txtFile);
-        findTotalAmountOfBags("shinygold", rules);
-        System.out.println(bagCount-1);
-
-        bagCount = 0;
-
-        txtFile = new File(FilePathGenerator.getFilePath("day7"));
-        rules = FileReaders.readTxtFileIntoMapOfColorsAndColorAmounts(txtFile);
         findTotalAmountOfBags("shinygold", rules);
         System.out.println(bagCount-1);
     }
@@ -50,16 +44,6 @@ public class Day7 {
             }
         });
     }
-
-    static private List<Bag> getAmountOfBags(int amount, String color) {
-        List<Bag> bags = new ArrayList<>();
-        for (int i = 0; i < amount; i++) {
-            bags.add(new Bag(color));
-        }
-
-        return bags;
-    }
-
 
     private static void printResultOfPart1(File txtFile) {
         Map<String, ArrayList<String>> rules = FileReaders.readTxtFileIntoMapOfBagsAndColors(txtFile);

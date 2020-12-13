@@ -66,18 +66,13 @@ public class Day6 {
         return letters;
     }
 
-    private static Map<String, Long> getMapOfAnswersAndFrequency(List<String> list) {
+    static Map<String, Long> getMapOfAnswersAndFrequency(List<String> list) {
         return list.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
-    private static Stream<Long> filterValuesEqualToGroupSize(Collection<Long> valueList, AtomicLong groupSize) {
-        return valueList.stream()
-                .filter(value -> isAnswerFrequencyEqualToGroupSize(value, groupSize));
+    private static Stream<Long> filterValuesEqualToGroupSize(Collection<Long> frequencyList, AtomicLong groupSize) {
+        return frequencyList.stream()
+                .filter(frequency -> frequency == groupSize.longValue());
     }
-
-    private static Boolean isAnswerFrequencyEqualToGroupSize(Long frequency, AtomicLong groupSize) {
-        return frequency == groupSize.longValue();
-    }
-
 }
