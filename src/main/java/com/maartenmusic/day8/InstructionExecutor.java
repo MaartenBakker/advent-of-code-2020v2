@@ -10,13 +10,17 @@ public class InstructionExecutor {
         this.instructions = instructions;
     }
 
-    public int execute(int position) {
+    public int execute(int position) throws EndOfInstructionsException, InstructionAboutToBeExecutedTwiceException {
+        if (position == this.instructions.size()) {
+            throw new EndOfInstructionsException(this.accumulator);
+        }
+
         Instruction instruction = this.instructions.get(position);
 
         instruction.setExecutionCount(instruction.getExecutionCount() + 1);
 
         if(instruction.getExecutionCount() > 1) {
-            return this.accumulator;
+            throw new InstructionAboutToBeExecutedTwiceException(this.accumulator);
         }
 
         else if(instruction.getOperation() == Operation.ACC) {

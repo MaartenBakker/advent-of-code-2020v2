@@ -5,7 +5,8 @@ import lombok.Setter;
 
 @Getter
 public class Instruction {
-    private final Operation operation;
+    @Setter
+    private Operation operation;
     private final int argument;
     @Setter
     private int executionCount;
