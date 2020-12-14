@@ -17,6 +17,6 @@ class InstructionExecutorTest {
         List<Instruction> instructions = FileReaders.readTxtFileIntoListOfInstructions(txtFile);
         InstructionExecutor instructionExecutor = new InstructionExecutor(instructions);
 
-        assertEquals(5, instructionExecutor.execute(0));
+        assertEquals(5, instructionExecutor.returnAccOnRepeatedInstruction(0));
     }
 }

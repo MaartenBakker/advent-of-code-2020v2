@@ -10,7 +10,7 @@ public class InstructionExecutor {
         this.instructions = instructions;
     }
 
-    public int execute(int position) {
+    public int returnAccOnRepeatedInstruction(int position) {
         Instruction instruction = this.instructions.get(position);
 
         instruction.setExecutionCount(instruction.getExecutionCount() + 1);
@@ -21,15 +21,15 @@ public class InstructionExecutor {
 
         else if(instruction.getOperation() == Operation.ACC) {
             this.accumulator += instruction.getArgument();
-            return execute(position + 1);
+            return returnAccOnRepeatedInstruction(position + 1);
         }
 
         else if(instruction.getOperation() == Operation.JMP) {
-            return execute(position + instruction.getArgument());
+            return returnAccOnRepeatedInstruction(position + instruction.getArgument());
         }
 
         else if(instruction.getOperation() == Operation.NOP) {
-            return execute(position + 1);
+            return returnAccOnRepeatedInstruction(position + 1);
         }
 
         return -1; //should never be reached...

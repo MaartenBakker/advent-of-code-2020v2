@@ -15,7 +15,7 @@ public class Day8 {
 
         InstructionExecutor instructionExecutor = new InstructionExecutor(instructions);
 
-        System.out.println(instructionExecutor.execute(0));
+        System.out.println(instructionExecutor.returnAccOnRepeatedInstruction(0));
 
     }
 
