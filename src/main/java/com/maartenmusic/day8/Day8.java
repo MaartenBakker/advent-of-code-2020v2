@@ -19,7 +19,7 @@ public class Day8 {
     }
 
     private static void printSolutionPart2(File txtFile) {
-        List<Instruction> instructions = FileReaders.readTxtFileIntoListOfInstructions(txtFile);
+         List<Instruction> instructions = FileReaders.readTxtFileIntoListOfInstructions(txtFile);
 
         while(true) {
             InstructionExecutor instructionExecutor = new InstructionExecutor(instructions);
