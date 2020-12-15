@@ -13,16 +13,25 @@ public class Day9 {
 
         List<Long> data = FileReaders.readTxtFileIntoArrayListOfLong(txtFile);
 
-        printResultOfPart1(data);
+        //Solution of part 1
+        System.out.println(getFirstNumberThatDoesNotFollowRule(data));
     }
 
-    public static void printResultOfPart1(List<Long> data) {
+    public static Long getFirstNumberThatDoesNotFollowRule(List<Long> data) {
         List<Long> subList;
-        twoNumbersFromListAddUpToNumber(data, 50L);
+        Long number;
 
+        for (int i = 0; i < data.size() - 25; i++) {
+            subList = data.subList(i, i + 25);
+            number = data.get(i + 25);
+            if(!twoDistinctNumbersFromListAddUpToNumber(subList, number)) {
+                return number;
+            }
+        }
+        return -1L;
     }
 
-    static boolean twoNumbersFromListAddUpToNumber(List<Long> numberList, Long number) {
+    static boolean twoDistinctNumbersFromListAddUpToNumber(List<Long> numberList, Long number) {
         for (Long listNumber: numberList) {
             if (number - listNumber != listNumber) {
                 int index = numberList.indexOf(number - listNumber);
