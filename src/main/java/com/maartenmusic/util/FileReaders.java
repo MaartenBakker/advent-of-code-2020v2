@@ -109,6 +109,24 @@ public class FileReaders {
         return bagMap;
     }
 
+    public static List<Long> readTxtFileIntoArrayListOfLong(File file) {
+
+        List<Long> longList = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            while((line = reader.readLine()) != null) {
+                longList.add(Long.parseLong(line));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return longList;
+    }
+
     public static List<Integer> readTxtFileIntoArrayListOfInteger(File file) {
 
         List<Integer> integerList = new ArrayList<>();
