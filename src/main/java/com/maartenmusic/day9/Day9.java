@@ -4,6 +4,9 @@ import com.maartenmusic.util.FilePathGenerator;
 import com.maartenmusic.util.FileReaders;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Day9 {
@@ -15,6 +18,33 @@ public class Day9 {
 
         //Solution of part 1
         System.out.println(getFirstNumberThatDoesNotFollowRule(data));
+
+        //Solution of part 2
+        Long numberFoundInPartOne = getFirstNumberThatDoesNotFollowRule(data);
+        List<Long> resultList = getListOfContiguousNumbersThatAddUpToNumber(data, numberFoundInPartOne);
+        System.out.println(sumOfSmallestAndLargestNumber(resultList));
+    }
+
+    public static Long sumOfSmallestAndLargestNumber(List<Long> numberList) {
+        return Collections.max(numberList) + Collections.min(numberList);
+    }
+
+    public static List<Long> getListOfContiguousNumbersThatAddUpToNumber(List<Long> numberList, Long number) {
+        List<Long> resultList;
+
+        for (int i = 0; i < numberList.size(); i++) {
+            resultList = new ArrayList<>();
+            for (int j = i; j < numberList.size(); j++) {
+                resultList.add(numberList.get(j));
+                Long sum = resultList.stream().reduce(Long::sum).get();
+                if (sum > number) {
+                    break;
+                } else if (sum.equals(number)) {
+                    return resultList;
+                }
+            }
+        }
+        return Arrays.asList(-1L);
     }
 
     public static Long getFirstNumberThatDoesNotFollowRule(List<Long> data) {
