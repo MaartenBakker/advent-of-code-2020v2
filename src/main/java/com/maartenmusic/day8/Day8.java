@@ -14,11 +14,12 @@ public class Day8 {
 
         printSolutionPart1(txtFile);
 
-        printSolutionPart2(txtFile);
+        //Solution part 2
+        System.out.println(getAccAtEndOfInstructions(txtFile));
 
     }
 
-    private static void printSolutionPart2(File txtFile) {
+    private static int getAccAtEndOfInstructions(File txtFile) {
          List<Instruction> instructions = FileReaders.txtToInstructions(txtFile);
 
         while(true) {
@@ -30,8 +31,7 @@ public class Day8 {
                 instructions = FileReaders.txtToInstructions(txtFile);
                 changeInstructions(instructions);
             } catch (EndOfInstructionsException e) {
-                System.out.println(e.getAccumulator());
-                break;
+                return e.getAccumulator();
             }
         }
     }
@@ -39,7 +39,7 @@ public class Day8 {
     private static void changeInstructions(List<Instruction> instructions) {
         Instruction instruction = instructions.get(listIndex);
 
-        if(instructions.get(listIndex).getOperation() == Operation.NOP) {
+        if(instruction.getOperation() == Operation.NOP) {
             instruction.setOperation(Operation.JMP);
         } else if (instruction.getOperation() == Operation.JMP) {
             instruction.setOperation(Operation.NOP);
