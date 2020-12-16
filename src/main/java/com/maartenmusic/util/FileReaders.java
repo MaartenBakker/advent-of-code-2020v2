@@ -12,7 +12,7 @@ import java.util.*;
 public class FileReaders {
 
 
-    public static List<Instruction> readTxtFileIntoListOfInstructions(File file) {
+    public static List<Instruction> txtToInstructions(File file) {
         List<Instruction> instructions = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -47,7 +47,7 @@ public class FileReaders {
         return instructions;
     }
 
-    public static Map<String, Map<String, Integer>> readTxtFileIntoMapOfColorsAndColorAmounts(File file) {
+    public static Map<String, Map<String, Integer>> txtToColorAndAmountMap(File file) {
         Map<String, Map<String, Integer>> bagMap = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -80,7 +80,7 @@ public class FileReaders {
         return bagMap;
     }
 
-    public static Map<String, ArrayList<String>> readTxtFileIntoMapOfBagsAndColors(File file) {
+    public static Map<String, ArrayList<String>> txtToBagAndColorsMap(File file) {
         Map<String, ArrayList<String>> bagMap = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -109,7 +109,7 @@ public class FileReaders {
         return bagMap;
     }
 
-    public static List<Long> readTxtFileIntoArrayListOfLong(File file) {
+    public static List<Long> txtToIntegers(File file) {
 
         List<Long> longList = new ArrayList<>();
 
@@ -127,7 +127,7 @@ public class FileReaders {
         return longList;
     }
 
-    public static List<Integer> readTxtFileIntoArrayListOfInteger(File file) {
+    public static List<Integer> txtToLongs(File file) {
 
         List<Integer> integerList = new ArrayList<>();
 
@@ -145,7 +145,7 @@ public class FileReaders {
         return integerList;
     }
 
-    public static List<String> readTxtFileIntoArrayListOfStrings(File file) {
+    public static List<String> txtToStrings(File file) {
 
         List<String> listOfStrings = new ArrayList<>();
 
@@ -163,7 +163,7 @@ public class FileReaders {
         return listOfStrings;
     }
 
-    public static ArrayList<ArrayList<String>> readTxtFileInto2dArrayList(File file) {
+    public static ArrayList<ArrayList<String>> txtToStrings2d(File file) {
         ArrayList<ArrayList<String>> theMatrix = new ArrayList<>();
         theMatrix.add(new ArrayList<>());
 
@@ -189,7 +189,7 @@ public class FileReaders {
         return theMatrix;
     }
 
-    public static ArrayList<Passport> readTxtFileIntoArrayListOfPassports(File file) {
+    public static ArrayList<Passport> txtToPassports(File file) {
         StringBuilder sb = new StringBuilder();
         ArrayList<Passport> passports = new ArrayList<>();
 

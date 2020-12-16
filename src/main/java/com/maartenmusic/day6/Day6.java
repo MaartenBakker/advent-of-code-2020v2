@@ -15,7 +15,7 @@ public class Day6 {
     public static void main(String[] args) {
         File txtFile = new File(FilePathGenerator.getFilePath("day6"));
 
-        ArrayList<ArrayList<String>> data = FileReaders.readTxtFileInto2dArrayList(txtFile);
+        ArrayList<ArrayList<String>> data = FileReaders.txtToStrings2d(txtFile);
 
         printResultOfPart1(data);
         printResultOfPart2(data);

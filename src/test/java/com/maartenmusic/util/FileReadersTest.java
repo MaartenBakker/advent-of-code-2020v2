@@ -1,8 +1,6 @@
 package com.maartenmusic.util;
 
-import com.maartenmusic.day8.Day8;
 import com.maartenmusic.day8.Instruction;
-import com.maartenmusic.day8.Operation;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -16,7 +14,7 @@ class FileReadersTest {
     void readTxtFileIntoListOfInstructions() {
         File txtFile = new File("src/main/java/com/maartenmusic/day8/testInput.txt");
 
-        List<Instruction> instructions = FileReaders.readTxtFileIntoListOfInstructions(txtFile);
+        List<Instruction> instructions = FileReaders.txtToInstructions(txtFile);
 
         instructions.forEach(instruction -> {
             System.out.println(instruction.getOperation());
@@ -30,7 +28,7 @@ class FileReadersTest {
 
         File txtFile = new File(FilePathGenerator.getFilePath("day7"));
 
-        Map<String, ArrayList<String>> rules = FileReaders.readTxtFileIntoMapOfBagsAndColors(txtFile);
+        Map<String, ArrayList<String>> rules = FileReaders.txtToBagAndColorsMap(txtFile);
 
         rules.keySet().stream().sorted().forEach(System.out::println);
         rules.values().forEach(System.out::println);
@@ -40,7 +38,7 @@ class FileReadersTest {
     void readTxtFileIntoMapOfColorsAndColorAmounts() {
 
         File txtFile = new File(FilePathGenerator.getFilePath("day7"));
-        Map<String, Map<String, Integer>> rules = FileReaders.readTxtFileIntoMapOfColorsAndColorAmounts(txtFile);
+        Map<String, Map<String, Integer>> rules = FileReaders.txtToColorAndAmountMap(txtFile);
 
 //        rules.keySet().stream().sorted().forEach(System.out::println);
         rules.values().forEach(list -> {

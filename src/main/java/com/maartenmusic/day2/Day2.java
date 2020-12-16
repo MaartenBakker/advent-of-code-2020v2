@@ -10,7 +10,7 @@ public class Day2 {
 
     public static void main(String[] args) {
         File txtFile = new File(FilePathGenerator.getFilePath("day2"));
-        List<String> data = FileReaders.readTxtFileIntoArrayListOfStrings(txtFile);
+        List<String> data = FileReaders.txtToStrings(txtFile);
 
         printResultPart1(data);
         printResultPart2(data);

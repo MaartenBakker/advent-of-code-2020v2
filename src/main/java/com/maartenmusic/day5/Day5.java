@@ -29,7 +29,7 @@ public class Day5 {
         }
 
         List<Integer> myIds = FileReaders
-                .readTxtFileIntoArrayListOfStrings(file)
+                .txtToStrings(file)
                 .stream()
                 .map(BoardingPass::new)
                 .map(BoardingPass::getSeat)
@@ -43,7 +43,7 @@ public class Day5 {
 
     private static void printResultOfPart1(File file) {
         FileReaders
-                .readTxtFileIntoArrayListOfStrings(file)
+                .txtToStrings(file)
                 .stream()
                 .map(BoardingPass::new)
                 .map(BoardingPass::getSeat)

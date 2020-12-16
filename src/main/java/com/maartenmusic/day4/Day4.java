@@ -26,7 +26,7 @@ public class Day4 {
         validator.setPassportRegex("[0-9]{9}");
 
         File txtFile = new File(FilePathGenerator.getFilePath("day4"));
-        ArrayList<Passport> passports = FileReaders.readTxtFileIntoArrayListOfPassports(txtFile);
+        ArrayList<Passport> passports = FileReaders.txtToPassports(txtFile);
 //        passports.forEach(Passport::generateMappedData);
 
         System.out.println(passports.stream().filter(validator::validatePasswordKeys).count());

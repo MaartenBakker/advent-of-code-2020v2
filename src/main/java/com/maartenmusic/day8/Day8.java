@@ -19,7 +19,7 @@ public class Day8 {
     }
 
     private static void printSolutionPart2(File txtFile) {
-         List<Instruction> instructions = FileReaders.readTxtFileIntoListOfInstructions(txtFile);
+         List<Instruction> instructions = FileReaders.txtToInstructions(txtFile);
 
         while(true) {
             InstructionExecutor instructionExecutor = new InstructionExecutor(instructions);
@@ -27,7 +27,7 @@ public class Day8 {
             try {
                 instructionExecutor.execute(0);
             } catch (InstructionAboutToBeExecutedTwiceException e) {
-                instructions = FileReaders.readTxtFileIntoListOfInstructions(txtFile);
+                instructions = FileReaders.txtToInstructions(txtFile);
                 changeInstructions(instructions);
             } catch (EndOfInstructionsException e) {
                 System.out.println(e.getAccumulator());
@@ -48,7 +48,7 @@ public class Day8 {
     }
 
     private static void printSolutionPart1(File txtFile) {
-        List<Instruction> instructions = FileReaders.readTxtFileIntoListOfInstructions(txtFile);
+        List<Instruction> instructions = FileReaders.txtToInstructions(txtFile);
 
         InstructionExecutor instructionExecutor = new InstructionExecutor(instructions);
 

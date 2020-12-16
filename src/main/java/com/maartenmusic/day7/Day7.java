@@ -28,7 +28,7 @@ public class Day7 {
     }
 
     private static void printResultOfPart2(File txtFile) {
-        Map<String, Map<String, Integer>> rules = FileReaders.readTxtFileIntoMapOfColorsAndColorAmounts(txtFile);
+        Map<String, Map<String, Integer>> rules = FileReaders.txtToColorAndAmountMap(txtFile);
         findTotalAmountOfBags("shinygold", rules);
         System.out.println(bagCount-1);
     }
@@ -46,7 +46,7 @@ public class Day7 {
     }
 
     private static void printResultOfPart1(File txtFile) {
-        Map<String, ArrayList<String>> rules = FileReaders.readTxtFileIntoMapOfBagsAndColors(txtFile);
+        Map<String, ArrayList<String>> rules = FileReaders.txtToBagAndColorsMap(txtFile);
 
         Set<String> results = findBagsThatContainColor( "shinygold", rules);
 

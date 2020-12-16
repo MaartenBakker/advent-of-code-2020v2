@@ -13,7 +13,7 @@ public class Day1 {
         File txtFile = new File(FilePathGenerator.getFilePath("day1"));
 
     
-        List<Integer> data = FileReaders.readTxtFileIntoArrayListOfInteger(txtFile);
+        List<Integer> data = FileReaders.txtToLongs(txtFile);
 
         int goal = 2020;
 

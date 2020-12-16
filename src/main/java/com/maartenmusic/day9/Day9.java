@@ -14,7 +14,7 @@ public class Day9 {
     public static void main(String[] args) {
         File txtFile = new File(FilePathGenerator.getFilePath("day9"));
 
-        List<Long> data = FileReaders.readTxtFileIntoArrayListOfLong(txtFile);
+        List<Long> data = FileReaders.txtToIntegers(txtFile);
 
         //Solution of part 1
         System.out.println(getFirstNumberThatDoesNotFollowRule(data));
