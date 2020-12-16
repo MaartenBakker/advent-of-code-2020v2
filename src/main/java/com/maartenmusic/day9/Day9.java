@@ -21,7 +21,7 @@ public class Day9 {
 
         //Solution of part 2
         Long numberFoundInPartOne = getFirstNumberThatDoesNotFollowRule(data);
-        List<Long> resultList = getListOfContiguousNumbersThatAddUpToNumber(data, numberFoundInPartOne);
+        List<Long> resultList = getContiguousNumbersThatSumToNumber(data, numberFoundInPartOne);
         System.out.println(sumOfSmallestAndLargestNumber(resultList));
     }
 
@@ -29,7 +29,7 @@ public class Day9 {
         return Collections.max(numberList) + Collections.min(numberList);
     }
 
-    public static List<Long> getListOfContiguousNumbersThatAddUpToNumber(List<Long> numberList, Long number) {
+    public static List<Long> getContiguousNumbersThatSumToNumber(List<Long> numberList, Long number) {
         List<Long> resultList;
 
         for (int i = 0; i < numberList.size(); i++) {
