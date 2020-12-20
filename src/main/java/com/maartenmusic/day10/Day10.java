@@ -71,20 +71,16 @@ public class Day10 {
         System.out.println("3's: " + threeConsecutiveOnes);
         System.out.println("4's: " + fourConsecutiveOnes);
 
-        BigInteger twos = new BigInteger("2");
+        BigInteger twos = new BigInteger("2"); // two 1's in a row create 2 permutations
         BigInteger twosPowered = twos.pow(twoConsecutiveOnes);
 
-        BigInteger threes = new BigInteger("4");
+        BigInteger threes = new BigInteger("4"); // three 1's in a row create 4 permutations
         BigInteger threesPowered = threes.pow(threeConsecutiveOnes);
 
-        BigInteger fours = new BigInteger("7");
+        BigInteger fours = new BigInteger("7"); // four 1's in a row create 7 permutations
         BigInteger foursPowered = fours.pow(fourConsecutiveOnes);
 
-        BigInteger twosPoweredTimesThreesPowered = twosPowered.multiply(threesPowered);
-
-        BigInteger permutations = twosPoweredTimesThreesPowered.multiply(foursPowered);
-
-        return permutations;
+        return twosPowered.multiply(threesPowered).multiply(foursPowered);
     }
 
     public static void printResultOfPartOne(List<Integer> data) {
