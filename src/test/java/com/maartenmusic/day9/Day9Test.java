@@ -37,11 +37,11 @@ class Day9Test {
         List<Long> expectedResultList = Arrays.asList(3L, 4L, 5L);
         List<Long> failList = Arrays.asList(-1L);
 
-        List<Long> resultList = Day9.getContiguousNumbersThatSumToNumber(numberList, number);
+        List<Long> resultList = Day9.ContiguousNumbersThatSumToNumber(numberList, number);
 
         assertEquals(expectedResultList, resultList);
 
-        resultList = Day9.getContiguousNumbersThatSumToNumber(numberList, 50L);
+        resultList = Day9.ContiguousNumbersThatSumToNumber(numberList, 50L);
 
         assertEquals(failList, resultList);
 

@@ -14,22 +14,22 @@ public class Day9 {
     public static void main(String[] args) {
         File txtFile = new File(FilePathGenerator.getFilePath("day9"));
 
-        List<Long> data = FileReaders.txtToIntegers(txtFile);
+        List<Long> data = FileReaders.txtToLongs(txtFile);
 
         //Solution of part 1
-        System.out.println(getFirstNumberThatDoesNotFollowRule(data));
+        System.out.println(FirstNumberThatDoesNotFollowRule(data));
 
         //Solution of part 2
-        Long numberFoundInPartOne = getFirstNumberThatDoesNotFollowRule(data);
-        List<Long> resultList = getContiguousNumbersThatSumToNumber(data, numberFoundInPartOne);
-        System.out.println(sumOfSmallestAndLargestNumber(resultList));
+        Long numberFoundInPartOne = FirstNumberThatDoesNotFollowRule(data);
+        List<Long> resultList = ContiguousNumbersThatSumToNumber(data, numberFoundInPartOne);
+        System.out.println(sumOfMinAndMax(resultList));
     }
 
-    public static Long sumOfSmallestAndLargestNumber(List<Long> numberList) {
+    public static Long sumOfMinAndMax(List<Long> numberList) {
         return Collections.max(numberList) + Collections.min(numberList);
     }
 
-    public static List<Long> getContiguousNumbersThatSumToNumber(List<Long> numberList, Long number) {
+    public static List<Long> ContiguousNumbersThatSumToNumber(List<Long> numberList, Long number) {
         List<Long> resultList;
 
         for (int i = 0; i < numberList.size(); i++) {
@@ -47,7 +47,7 @@ public class Day9 {
         return Arrays.asList(-1L);
     }
 
-    public static Long getFirstNumberThatDoesNotFollowRule(List<Long> data) {
+    public static Long FirstNumberThatDoesNotFollowRule(List<Long> data) {
         List<Long> subList;
         Long number;
 

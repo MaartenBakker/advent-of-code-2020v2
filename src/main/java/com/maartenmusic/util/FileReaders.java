@@ -109,7 +109,7 @@ public class FileReaders {
         return bagMap;
     }
 
-    public static List<Long> txtToIntegers(File file) {
+    public static List<Long> txtToLongs(File file) {
 
         List<Long> longList = new ArrayList<>();
 
@@ -127,7 +127,7 @@ public class FileReaders {
         return longList;
     }
 
-    public static List<Integer> txtToLongs(File file) {
+    public static List<Integer> txtToIntegers(File file) {
 
         List<Integer> integerList = new ArrayList<>();
 
