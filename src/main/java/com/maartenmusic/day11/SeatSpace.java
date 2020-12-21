@@ -10,12 +10,13 @@ import lombok.ToString;
 public class SeatSpace {
     private State state;
 
+    public SeatSpace() {
+        this.state = this.state = State.FLOOR;;
+    }
+
     public SeatSpace(String stateString) {
         switch (stateString) {
 
-            case ".":
-                this.state = State.FLOOR;
-                break;
             case "L":
                 this.state = State.EMPTY;
                 break;

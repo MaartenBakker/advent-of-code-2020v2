@@ -4,6 +4,7 @@ import com.maartenmusic.util.FilePathGenerator;
 import com.maartenmusic.util.FileReaders;
 
 import java.io.File;
+import java.util.Arrays;
 
 public class Day11 {
 
@@ -14,7 +15,14 @@ public class Day11 {
         System.out.println(occupiedSeatsAtFinalState(seatingRoom));
     }
 
-    static int occupiedSeatsAtFinalState(SeatingRoom seatingRoom) {
-        return -1;
+    static long occupiedSeatsAtFinalState(SeatingRoom oldSeatingRoom) {
+        SeatingRoom newSeatingRoom = oldSeatingRoom.changeSeats();
+
+            if(newSeatingRoom.flattenSeats().equals(oldSeatingRoom.flattenSeats())) {
+                return Arrays.stream(newSeatingRoom.flattenSeats().split(""))
+                        .filter(character -> character.equals("#")).count();
+            }
+
+            return occupiedSeatsAtFinalState(newSeatingRoom);
     }
 }

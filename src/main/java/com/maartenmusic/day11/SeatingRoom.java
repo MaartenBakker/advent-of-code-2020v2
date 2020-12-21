@@ -8,7 +8,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Getter
 @Setter
@@ -17,63 +16,132 @@ public class SeatingRoom {
 
     private List<List<SeatSpace>> seatSpaces;
 
+    public String flattenSeats() {
+        StringBuilder stringOfSeats = new StringBuilder();
+
+        for (List<SeatSpace> list : seatSpaces ) {
+            for (SeatSpace seatSpace : list) {
+                if (seatSpace.isOccupied()) {
+                    stringOfSeats.append("#");
+                } else if (seatSpace.isEmpty()) {
+                    stringOfSeats.append(("L"));
+                } else {
+                    stringOfSeats.append(".");
+                }
+            }
+        }
+
+        return stringOfSeats.toString();
+    }
+
+
     public SeatingRoom changeSeats() {
         List<List<SeatSpace>> newSeatSpaces = new ArrayList<>();
+        int columnSize = this.seatSpaces.size();
 
-        // middle seats
-        for (int i = 1; i < this.seatSpaces.size() -1; i++) {
+        for (int i = 0; i < columnSize; i++) {
             List<SeatSpace> newRow = new ArrayList<>();
+            int rowSize = this.seatSpaces.get(i).size();
 
-            for (int j = 1; j < this.seatSpaces.get(i).size() -1; j++) {
+            for (int j = 0; j < rowSize; j++) {
                 SeatSpace currentSeat = this.seatSpaces.get(i).get(j);
 
                 if (currentSeat.isFloor()) {
-                    newRow.add(currentSeat);
+                    newRow.add(new SeatSpace());
                     continue;
                 }
 
-                SeatSpace north = this.seatSpaces.get(i -1).get(j);
-                SeatSpace northEast = this.seatSpaces.get(i -1).get(j +1);
-                SeatSpace east = this.seatSpaces.get(i).get(j +1);
-                SeatSpace southEast = this.seatSpaces.get(i +1).get(j +1);
-                SeatSpace south = this.seatSpaces.get(i +1).get(j);
-                SeatSpace southWest = this.seatSpaces.get(i +1).get(j -1);
-                SeatSpace west = this.seatSpaces.get(i).get(j -1);
-                SeatSpace northWest = this.seatSpaces.get(i -1).get(j -1);
+                SeatSpace northWest = null;
+                SeatSpace north = null;
+                SeatSpace northEast = null;
 
-                List<SeatSpace> allDirections = Arrays.asList(north, northEast, east,  southEast, south, southWest,
+                SeatSpace southWest = null;
+                SeatSpace south = null;
+                SeatSpace southEast = null;
+
+                SeatSpace west = null;
+                SeatSpace east = null;
+
+                if (i - 1 < 0) {
+                    northWest = new SeatSpace();
+                    north = new SeatSpace();
+                    northEast = new SeatSpace();
+                }
+
+                if (i + 1 == columnSize) {
+                    southWest = new SeatSpace();
+                    south = new SeatSpace();
+                    southEast = new SeatSpace();
+                }
+
+                if (j -1 < 0) {
+                    northWest = new SeatSpace();
+                    west = new SeatSpace();
+                    southWest = new SeatSpace();
+                }
+
+                if (j +1 == rowSize) {
+                    northEast = new SeatSpace();
+                    east = new SeatSpace();
+                    southEast = new SeatSpace();
+                }
+
+                if (north == null) {
+                    north =  this.seatSpaces.get(i - 1).get(j);
+                }
+
+                if (northEast == null) {
+                    northEast = this.seatSpaces.get(i - 1).get(j + 1);
+                }
+
+                if (east == null) {
+                    east = this.seatSpaces.get(i).get(j + 1);
+                }
+
+                if (southEast == null) {
+                    southEast = this.seatSpaces.get(i + 1).get(j + 1);
+                }
+
+                if (south == null) {
+                    south = this.seatSpaces.get(i + 1).get(j);
+                }
+
+                if (southWest == null) {
+                    southWest = this.seatSpaces.get(i + 1).get(j - 1);
+                }
+
+                if (west == null) {
+                    west = this.seatSpaces.get(i).get(j - 1);
+                }
+
+                if (northWest == null) {
+                    northWest = this.seatSpaces.get(i - 1).get(j - 1);
+                }
+
+                List<SeatSpace> allDirections = Arrays.asList(north, northEast, east, southEast, south, southWest,
                         west, northWest);
 
                 if (currentSeat.isEmpty()) {
                     if (allDirections.stream().noneMatch(SeatSpace::isOccupied)) {
                         newRow.add(new SeatSpace("#"));
+                    } else {
+                        SeatSpace copyOfCurrentSeat = new SeatSpace(".");
+                        copyOfCurrentSeat.setState(currentSeat.getState());
+                        newRow.add(copyOfCurrentSeat);
                     }
                 } else if (currentSeat.isOccupied()) {
                     if (allDirections.stream().filter(SeatSpace::isOccupied).count() >= 4) {
                         newRow.add(new SeatSpace("L"));
+                    } else {
+                        SeatSpace copyOfCurrentSeat = new SeatSpace(".");
+                        copyOfCurrentSeat.setState(currentSeat.getState());
+                        newRow.add(copyOfCurrentSeat);
                     }
-                } else {
-                    SeatSpace copyOfCurrentSeat = new SeatSpace(".");
-                    copyOfCurrentSeat.setState(currentSeat.getState());
-                    newRow.add(copyOfCurrentSeat);
                 }
 
             }
-
-            newSeatSpaces.add(newRow);
-        }
-
-        // == Remember to add to list at right indexes==
-
-        // top row middle seats
-
-        // bottom row middle seats
-
-        // left edge middle seats
-
-        // right edge middle seats
-
-        //corners
+                newSeatSpaces.add(newRow);
+            }
 
         return new SeatingRoom(newSeatSpaces);
     }

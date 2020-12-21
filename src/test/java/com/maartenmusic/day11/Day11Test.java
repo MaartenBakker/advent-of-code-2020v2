@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.io.File;
-import java.util.List;
 
 class Day11Test {
 
