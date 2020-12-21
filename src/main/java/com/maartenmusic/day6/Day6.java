@@ -15,13 +15,13 @@ public class Day6 {
     public static void main(String[] args) {
         File txtFile = new File(FilePathGenerator.getFilePath("day6"));
 
-        ArrayList<ArrayList<String>> data = FileReaders.txtToStrings2d(txtFile);
+        List<List<String>> data = FileReaders.alineasToStrings2d(txtFile);
 
         printResultOfPart1(data);
         printResultOfPart2(data);
     }
 
-    private static void printResultOfPart1(ArrayList<ArrayList<String>> data) {
+    private static void printResultOfPart1(List<List<String>> data) {
         int resultPart1 = data.stream()
                 .map(Day6::listOfWordsToMapOfUniqueLetters)
                 .map(Set::size)
@@ -30,7 +30,7 @@ public class Day6 {
         System.out.println("Part one answer: " + resultPart1);
     }
 
-    private static void printResultOfPart2(ArrayList<ArrayList<String>> data) {
+    private static void printResultOfPart2(List<List<String>> data) {
         AtomicLong groupSize = new AtomicLong();
 
         int resultPart2 = data.stream()
@@ -46,7 +46,7 @@ public class Day6 {
         System.out.println("Part two answer: " + resultPart2);
     }
 
-    private static Set<String> listOfWordsToMapOfUniqueLetters(ArrayList<String> list) {
+    private static Set<String> listOfWordsToMapOfUniqueLetters(List<String> list) {
         Set<String> letters = new HashSet<>();
         list.forEach(word -> {
             String[] strArr = word.split("");
@@ -56,7 +56,7 @@ public class Day6 {
         return letters;
     }
 
-    private static List<String> listOfWordsToListOfLetters(ArrayList<String> list) {
+    private static List<String> listOfWordsToListOfLetters(List<String> list) {
         List<String> letters = new ArrayList<>();
         list.forEach(word -> {
             String[] strArr = word.split("");

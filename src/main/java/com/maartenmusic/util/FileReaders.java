@@ -1,5 +1,7 @@
 package com.maartenmusic.util;
 
+import com.maartenmusic.day11.SeatSpace;
+import com.maartenmusic.day11.SeatingRoom;
 import com.maartenmusic.day4.Passport;
 import com.maartenmusic.day8.Instruction;
 import com.maartenmusic.day8.Operation;
@@ -163,8 +165,31 @@ public class FileReaders {
         return listOfStrings;
     }
 
-    public static ArrayList<ArrayList<String>> txtToStrings2d(File file) {
-        ArrayList<ArrayList<String>> theMatrix = new ArrayList<>();
+    public static SeatingRoom txtToSeatingRoom(File file) {
+        List<List<SeatSpace>> seatSpaces = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            while((line = reader.readLine()) != null) {
+                List<SeatSpace> currentRow =  new ArrayList<>();
+
+                List<String> chars = Arrays.asList(line.split(""));
+                chars.forEach(character -> currentRow.add(new SeatSpace(character)));
+
+                seatSpaces.add(currentRow);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new SeatingRoom(seatSpaces);
+
+    }
+
+
+    public static List<List<String>> alineasToStrings2d(File file) {
+        List<List<String>> theMatrix = new ArrayList<>();
         theMatrix.add(new ArrayList<>());
 
         int counter = 0;

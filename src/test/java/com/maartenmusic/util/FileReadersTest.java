@@ -1,5 +1,7 @@
 package com.maartenmusic.util;
 
+import com.maartenmusic.day11.SeatSpace;
+import com.maartenmusic.day11.SeatingRoom;
 import com.maartenmusic.day8.Instruction;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +13,7 @@ import java.util.Map;
 class FileReadersTest {
 
     @Test
-    void readTxtFileIntoListOfInstructions() {
+    void txtToInstructions() {
         File txtFile = new File("src/main/java/com/maartenmusic/day8/testInput.txt");
 
         List<Instruction> instructions = FileReaders.txtToInstructions(txtFile);
@@ -24,7 +26,7 @@ class FileReadersTest {
     }
 
     @Test
-    void readTxtFileIntoMapOfBagsAndColors() {
+    void txtToBagAndColorsMap() {
 
         File txtFile = new File(FilePathGenerator.getFilePath("day7"));
 
@@ -35,7 +37,7 @@ class FileReadersTest {
     }
 
     @Test
-    void readTxtFileIntoMapOfColorsAndColorAmounts() {
+    void txtToColorAndAmountMap() {
 
         File txtFile = new File(FilePathGenerator.getFilePath("day7"));
         Map<String, Map<String, Integer>> rules = FileReaders.txtToColorAndAmountMap(txtFile);
@@ -47,5 +49,12 @@ class FileReadersTest {
             }
         });
 
+    }
+
+    @Test
+    void txtToSeatSpaces() {
+        File txtFile = new File("src/test/java/com/maartenmusic/day11/testInput.txt");
+        SeatingRoom seatingRoom = FileReaders.txtToSeatingRoom(txtFile);
+        seatingRoom.getSeatSpaces().forEach(System.out::println);
     }
 }

@@ -12,7 +12,7 @@ class InstructionExecutorTest {
 
     @Test
     void execute() {
-        File txtFile = new File("src/main/java/com/maartenmusic/day8/testInput.txt");
+        File txtFile = new File("src/test/java/com/maartenmusic/day8/testInput.txt");
 
         List<Instruction> instructions = FileReaders.txtToInstructions(txtFile);
         InstructionExecutor instructionExecutor1 = new InstructionExecutor(instructions);

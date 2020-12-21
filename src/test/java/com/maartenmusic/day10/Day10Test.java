@@ -14,7 +14,7 @@ class Day10Test {
 
     @Test
     void countPermutations() {
-        File file = new File("src/main/java/com/maartenmusic/day10/testInput.txt");
+        File file = new File("src/test/java/com/maartenmusic/day10/testInput.txt");
         List<Integer> data = FileReaders.txtToIntegers(file);
 
         data.add(0);
@@ -23,7 +23,7 @@ class Day10Test {
 
         System.out.println(Day10.countPermutations(data));
 
-        file = new File("src/main/java/com/maartenmusic/day10/testInput2.txt");
+        file = new File("src/test/java/com/maartenmusic/day10/testInput2.txt");
         data = FileReaders.txtToIntegers(file);
 
         data.add(0);
