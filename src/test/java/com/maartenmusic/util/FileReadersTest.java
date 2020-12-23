@@ -1,7 +1,7 @@
 package com.maartenmusic.util;
 
-import com.maartenmusic.day11.SeatSpace;
-import com.maartenmusic.day11.SeatingRoom;
+import com.maartenmusic.day11.SeatingRoom2dList;
+import com.maartenmusic.day11.SeatingRoomMap;
 import com.maartenmusic.day8.Instruction;
 import org.junit.jupiter.api.Test;
 
@@ -52,9 +52,16 @@ class FileReadersTest {
     }
 
     @Test
-    void txtToSeatSpaces() {
+    void txtToSeatingRoom2dList() {
         File txtFile = new File("src/test/java/com/maartenmusic/day11/testInput.txt");
-        SeatingRoom seatingRoom = FileReaders.txtToSeatingRoom(txtFile);
-        seatingRoom.getSeatSpaces().forEach(System.out::println);
+        SeatingRoom2dList seatingRoom2dList = FileReaders.txtToSeatingRoom2dList(txtFile);
+        seatingRoom2dList.getSeatSpaces().forEach(System.out::println);
+    }
+
+    @Test
+    void txtToSeatingRoomMap() {
+        File txtFile = new File("src/test/java/com/maartenmusic/day11/testInput.txt");
+        SeatingRoomMap seatingRoomMap = FileReaders.txtToSeatingRoomMap(txtFile);
+        System.out.println(seatingRoomMap.flattenSeats());
     }
 }

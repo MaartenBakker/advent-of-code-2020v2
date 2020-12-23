@@ -10,19 +10,43 @@ public class Day11 {
 
     public static void main(String[] args) {
         File txtFile = new File(FilePathGenerator.getFilePath("day11"));
-        SeatingRoom seatingRoom = FileReaders.txtToSeatingRoom(txtFile);
 
-        System.out.println(occupiedSeatsAtFinalState(seatingRoom));
+        long startList = System.nanoTime();
+        SeatingRoom2dList seatingRoom2dList = FileReaders.txtToSeatingRoom2dList(txtFile);
+
+        System.out.println(occupiedSeatsAtFinalState2dList(seatingRoom2dList));
+        long finishList = System.nanoTime();
+
+        long startMap = System.nanoTime();
+        SeatingRoomMap seatingRoomMap = FileReaders.txtToSeatingRoomMap(txtFile);
+
+        System.out.println(occupiedSeatsAtFinalStateMap(seatingRoomMap));
+        long finishMap = System.nanoTime();
+
+        System.out.println("List duration: " + (finishList - startList));
+        System.out.println("Map duration: " + (finishMap - startMap));
+
     }
 
-    static long occupiedSeatsAtFinalState(SeatingRoom oldSeatingRoom) {
-        SeatingRoom newSeatingRoom = oldSeatingRoom.changeSeats();
+    static long occupiedSeatsAtFinalState2dList(SeatingRoom2dList oldSeatingRoom2dList) {
+        SeatingRoom2dList newSeatingRoom2dList = oldSeatingRoom2dList.changeSeats();
 
-            if(newSeatingRoom.flattenSeats().equals(oldSeatingRoom.flattenSeats())) {
-                return Arrays.stream(newSeatingRoom.flattenSeats().split(""))
+            if(newSeatingRoom2dList.flattenSeats().equals(oldSeatingRoom2dList.flattenSeats())) {
+                return Arrays.stream(newSeatingRoom2dList.flattenSeats().split(""))
                         .filter(character -> character.equals("#")).count();
             }
 
-            return occupiedSeatsAtFinalState(newSeatingRoom);
+            return occupiedSeatsAtFinalState2dList(newSeatingRoom2dList);
+    }
+
+    static long occupiedSeatsAtFinalStateMap(SeatingRoomMap oldSeatingRoomMap) {
+        SeatingRoomMap newSeatingRoomMap = oldSeatingRoomMap.changeSeats();
+
+        if(newSeatingRoomMap.flattenSeats().equals(oldSeatingRoomMap.flattenSeats())) {
+            return Arrays.stream(newSeatingRoomMap.flattenSeats().split(""))
+                    .filter(character -> character.equals("#")).count();
+        }
+
+        return occupiedSeatsAtFinalStateMap(newSeatingRoomMap);
     }
 }

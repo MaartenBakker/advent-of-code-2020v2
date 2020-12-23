@@ -1,7 +1,9 @@
 package com.maartenmusic.util;
 
 import com.maartenmusic.day11.SeatSpace;
-import com.maartenmusic.day11.SeatingRoom;
+import com.maartenmusic.day11.SeatingRoom2dList;
+import com.maartenmusic.day11.SeatingRoomMap;
+import com.maartenmusic.day3.Coordinates;
 import com.maartenmusic.day4.Passport;
 import com.maartenmusic.day8.Instruction;
 import com.maartenmusic.day8.Operation;
@@ -165,7 +167,32 @@ public class FileReaders {
         return listOfStrings;
     }
 
-    public static SeatingRoom txtToSeatingRoom(File file) {
+    public static SeatingRoomMap txtToSeatingRoomMap(File file) {
+        Map<Coordinates, SeatSpace> seatSpaces = new TreeMap<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            int yCounter = 0;
+
+            while((line = reader.readLine()) != null) {
+
+                List<String> chars = Arrays.asList(line.split(""));
+                for (int i = 0; i < chars.size(); i++) {
+                    seatSpaces.put(new Coordinates(i, yCounter), new SeatSpace(chars.get(i)));
+//                    System.out.println(i + " " + yCounter + " " + chars.get(i));
+                }
+
+                yCounter++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new SeatingRoomMap(seatSpaces);
+
+    }
+
+    public static SeatingRoom2dList txtToSeatingRoom2dList(File file) {
         List<List<SeatSpace>> seatSpaces = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -183,8 +210,7 @@ public class FileReaders {
             e.printStackTrace();
         }
 
-        return new SeatingRoom(seatSpaces);
-
+        return new SeatingRoom2dList(seatSpaces);
     }
 
 
