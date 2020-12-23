@@ -3,7 +3,6 @@ package com.maartenmusic.util;
 import com.maartenmusic.day11.SeatSpace;
 import com.maartenmusic.day11.SeatingRoom2dList;
 import com.maartenmusic.day11.SeatingRoomMap;
-import com.maartenmusic.day3.Coordinates;
 import com.maartenmusic.day4.Passport;
 import com.maartenmusic.day8.Instruction;
 import com.maartenmusic.day8.Operation;

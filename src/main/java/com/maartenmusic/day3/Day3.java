@@ -1,5 +1,6 @@
 package com.maartenmusic.day3;
 
+import com.maartenmusic.util.Coordinates;
 import com.maartenmusic.util.FilePathGenerator;
 import com.maartenmusic.util.FileReaders;
 

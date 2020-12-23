@@ -20,11 +20,14 @@ public class Day11 {
         long startMap = System.nanoTime();
         SeatingRoomMap seatingRoomMap = FileReaders.txtToSeatingRoomMap(txtFile);
 
-        System.out.println(occupiedSeatsAtFinalStateMap(seatingRoomMap));
+        System.out.println(occupiedSeatsAtFinalStateMapPart1(seatingRoomMap));
         long finishMap = System.nanoTime();
 
         System.out.println("List duration: " + (finishList - startList));
         System.out.println("Map duration: " + (finishMap - startMap));
+
+        System.out.println("Solution part 2:");
+        System.out.println(occupiedSeatsAtFinalStateMapPart2(seatingRoomMap));
 
     }
 
@@ -39,14 +42,27 @@ public class Day11 {
             return occupiedSeatsAtFinalState2dList(newSeatingRoom2dList);
     }
 
-    static long occupiedSeatsAtFinalStateMap(SeatingRoomMap oldSeatingRoomMap) {
-        SeatingRoomMap newSeatingRoomMap = oldSeatingRoomMap.changeSeats();
+    static long occupiedSeatsAtFinalStateMapPart1(SeatingRoomMap oldSeatingRoomMap) {
+        SeatingRoomMap newSeatingRoomMap = oldSeatingRoomMap.changeSeatsPart1();
 
         if(newSeatingRoomMap.flattenSeats().equals(oldSeatingRoomMap.flattenSeats())) {
             return Arrays.stream(newSeatingRoomMap.flattenSeats().split(""))
                     .filter(character -> character.equals("#")).count();
         }
 
-        return occupiedSeatsAtFinalStateMap(newSeatingRoomMap);
+        return occupiedSeatsAtFinalStateMapPart1(newSeatingRoomMap);
     }
+
+    static long occupiedSeatsAtFinalStateMapPart2(SeatingRoomMap oldSeatingRoomMap) {
+        SeatingRoomMap newSeatingRoomMap = oldSeatingRoomMap.changeSeatsPart2();
+
+        if(newSeatingRoomMap.flattenSeats().equals(oldSeatingRoomMap.flattenSeats())) {
+            return Arrays.stream(newSeatingRoomMap.flattenSeats().split(""))
+                    .filter(character -> character.equals("#")).count();
+        }
+
+        return occupiedSeatsAtFinalStateMapPart2(newSeatingRoomMap);
+    }
+
+
 }
