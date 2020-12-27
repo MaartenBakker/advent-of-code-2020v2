@@ -310,4 +310,27 @@ public class TxtFileReaders {
         return busIDs;
     }
 
+    public static Map<Integer, Integer> toBusIdsAndIndex(File file) {
+        Map<Integer, Integer> busIDsAndIndex = new HashMap<>();
+        String line = "";
+
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            reader.readLine(); //skip first line;
+            line = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<String> splitLine = Arrays.asList(line.split(","));
+
+        for (String character : splitLine) {
+            if (!character.equals("x")) {
+                busIDsAndIndex.put(Integer.parseInt(character), splitLine.indexOf(character));
+            }
+        }
+
+        return busIDsAndIndex;
+    }
+
 }

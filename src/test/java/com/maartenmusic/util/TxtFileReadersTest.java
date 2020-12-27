@@ -86,4 +86,11 @@ class TxtFileReadersTest {
         List<Integer> busIDs = TxtFileReaders.toBusIDs(txtFile);
         busIDs.forEach(System.out::println);
     }
+
+    @Test
+    void toBusIdsAndIndex() {
+        File txtFile = new File("src/test/java/com/maartenmusic/day13/testInput.txt");
+        Map<Integer, Integer> busIDsAndIndex = TxtFileReaders.toBusIdsAndIndex(txtFile);
+        busIDsAndIndex.entrySet().forEach(System.out::println);
+    }
 }

@@ -14,4 +14,11 @@ class Day13Test {
         int result = Day13.getResultOfPart1(txtFile);
         assertEquals(295, result);
     }
+
+    @Test
+    void getResultOfPart2() {
+        File txtFile = new File("src/test/java/com/maartenmusic/day13/testInput.txt");
+        long result = Day13.getResultOfPart2(txtFile);
+        assertEquals(1068781, result);
+    }
 }
