@@ -1,7 +1,7 @@
 package com.maartenmusic.day10;
 
 import com.maartenmusic.util.FilePathGenerator;
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 
 import java.io.File;
 import java.math.BigInteger;
@@ -13,7 +13,7 @@ public class Day10 {
     public static void main(String[] args) {
 
         File txtFile = new File(FilePathGenerator.getFilePath("day10"));
-        List<Integer> data = FileReaders.txtToIntegers(txtFile);
+        List<Integer> data = TxtFileReaders.toIntegers(txtFile);
 
         data.add(0);
         data.add(Collections.max(data) + 3);

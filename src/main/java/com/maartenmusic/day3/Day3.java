@@ -2,7 +2,7 @@ package com.maartenmusic.day3;
 
 import com.maartenmusic.util.Coordinates;
 import com.maartenmusic.util.FilePathGenerator;
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 
 import java.io.File;
 import java.util.List;
@@ -23,7 +23,7 @@ public class Day3 {
 //            posx = posx - string.length();
 //        }
         File txtFile = new File(FilePathGenerator.getFilePath("day3"));
-        List<String> data = FileReaders.txtToStrings(txtFile);
+        List<String> data = TxtFileReaders.toStrings(txtFile);
 
         int a = (countTrees(data, new Directions(1, 1)));
         int b = (countTrees(data, new Directions(3, 1)));

@@ -3,19 +3,18 @@ package com.maartenmusic.util;
 import com.maartenmusic.day11.SeatSpace;
 import com.maartenmusic.day11.SeatingRoom2dList;
 import com.maartenmusic.day11.SeatingRoomMap;
+import com.maartenmusic.day12.Action;
 import com.maartenmusic.day4.Passport;
 import com.maartenmusic.day8.Instruction;
 import com.maartenmusic.day8.Operation;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.*;
 
-public class FileReaders {
+public class TxtFileReaders {
 
 
-    public static List<Instruction> txtToInstructions(File file) {
+    public static List<Instruction> toInstructions(File file) {
         List<Instruction> instructions = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -43,14 +42,14 @@ public class FileReaders {
                 instructions.add(new Instruction(operation, argument));
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         return instructions;
     }
 
-    public static Map<String, Map<String, Integer>> txtToColorAndAmountMap(File file) {
+    public static Map<String, Map<String, Integer>> toColorAndAmountMap(File file) {
         Map<String, Map<String, Integer>> bagMap = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -76,14 +75,14 @@ public class FileReaders {
                 bagMap.put(bag, bagAmountMap);
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         return bagMap;
     }
 
-    public static Map<String, ArrayList<String>> txtToBagAndColorsMap(File file) {
+    public static Map<String, ArrayList<String>> toBagAndColorsMap(File file) {
         Map<String, ArrayList<String>> bagMap = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -105,14 +104,14 @@ public class FileReaders {
                 bagMap.put(bag, colorList);
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         return bagMap;
     }
 
-    public static List<Long> txtToLongs(File file) {
+    public static List<Long> toLongs(File file) {
 
         List<Long> longList = new ArrayList<>();
 
@@ -123,14 +122,14 @@ public class FileReaders {
                 longList.add(Long.parseLong(line));
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         return longList;
     }
 
-    public static List<Integer> txtToIntegers(File file) {
+    public static List<Integer> toIntegers(File file) {
 
         List<Integer> integerList = new ArrayList<>();
 
@@ -141,14 +140,14 @@ public class FileReaders {
                 integerList.add(Integer.parseInt(line));
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         return integerList;
     }
 
-    public static List<String> txtToStrings(File file) {
+    public static List<String> toStrings(File file) {
 
         List<String> listOfStrings = new ArrayList<>();
 
@@ -159,14 +158,14 @@ public class FileReaders {
                 listOfStrings.add(line);
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         return listOfStrings;
     }
 
-    public static SeatingRoomMap txtToSeatingRoomMap(File file) {
+    public static SeatingRoomMap toSeatingRoomMap(File file) {
         Map<Coordinates, SeatSpace> seatSpaces = new TreeMap<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -183,7 +182,7 @@ public class FileReaders {
 
                 yCounter++;
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -191,7 +190,7 @@ public class FileReaders {
 
     }
 
-    public static SeatingRoom2dList txtToSeatingRoom2dList(File file) {
+    public static SeatingRoom2dList toSeatingRoom2dList(File file) {
         List<List<SeatSpace>> seatSpaces = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -205,7 +204,7 @@ public class FileReaders {
 
                 seatSpaces.add(currentRow);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -232,14 +231,14 @@ public class FileReaders {
 
                 theMatrix.get(counter).add(line);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         return theMatrix;
     }
 
-    public static ArrayList<Passport> txtToPassports(File file) {
+    public static ArrayList<Passport> toPassports(File file) {
         StringBuilder sb = new StringBuilder();
         ArrayList<Passport> passports = new ArrayList<>();
 
@@ -252,7 +251,7 @@ public class FileReaders {
                 sb.append("\n");
 
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -263,6 +262,22 @@ public class FileReaders {
         }
 
         return passports;
+    }
+
+    public static List<Action> toActions(File file) {
+        List<Action> actions = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Action action = new Action(line.charAt(0), Integer.parseInt(line.substring(1)));
+                actions.add(action);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return actions;
     }
 
 }

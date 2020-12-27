@@ -1,6 +1,6 @@
 package com.maartenmusic.day8;
 
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -14,7 +14,7 @@ class InstructionExecutorTest {
     void execute() {
         File txtFile = new File("src/test/java/com/maartenmusic/day8/testInput.txt");
 
-        List<Instruction> instructions = FileReaders.txtToInstructions(txtFile);
+        List<Instruction> instructions = TxtFileReaders.toInstructions(txtFile);
         InstructionExecutor instructionExecutor1 = new InstructionExecutor(instructions);
 
         assertThrows(InstructionAboutToBeExecutedTwiceException.class, ()-> instructionExecutor1.execute(0));

@@ -1,7 +1,7 @@
 package com.maartenmusic.day8;
 
 import com.maartenmusic.util.FilePathGenerator;
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 
 import java.io.File;
 import java.util.List;
@@ -20,7 +20,7 @@ public class Day8 {
     }
 
     private static int getAccAtEndOfInstructions(File txtFile) {
-         List<Instruction> instructions = FileReaders.txtToInstructions(txtFile);
+         List<Instruction> instructions = TxtFileReaders.toInstructions(txtFile);
 
         while(true) {
             InstructionExecutor instructionExecutor = new InstructionExecutor(instructions);
@@ -28,7 +28,7 @@ public class Day8 {
             try {
                 instructionExecutor.execute(0);
             } catch (InstructionAboutToBeExecutedTwiceException e) {
-                instructions = FileReaders.txtToInstructions(txtFile);
+                instructions = TxtFileReaders.toInstructions(txtFile);
                 changeInstructions(instructions);
             } catch (EndOfInstructionsException e) {
                 return e.getAccumulator();
@@ -48,7 +48,7 @@ public class Day8 {
     }
 
     private static void printSolutionPart1(File txtFile) {
-        List<Instruction> instructions = FileReaders.txtToInstructions(txtFile);
+        List<Instruction> instructions = TxtFileReaders.toInstructions(txtFile);
 
         InstructionExecutor instructionExecutor = new InstructionExecutor(instructions);
 

@@ -2,7 +2,7 @@ package com.maartenmusic.day5;
 
 import com.maartenmusic.util.ArrayGenerator;
 import com.maartenmusic.util.FilePathGenerator;
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 
 
 import java.io.File;
@@ -28,8 +28,8 @@ public class Day5 {
             allIds.add(id);
         }
 
-        List<Integer> myIds = FileReaders
-                .txtToStrings(file)
+        List<Integer> myIds = TxtFileReaders
+                .toStrings(file)
                 .stream()
                 .map(BoardingPass::new)
                 .map(BoardingPass::getSeat)
@@ -42,8 +42,8 @@ public class Day5 {
     }
 
     private static void printResultOfPart1(File file) {
-        FileReaders
-                .txtToStrings(file)
+        TxtFileReaders
+                .toStrings(file)
                 .stream()
                 .map(BoardingPass::new)
                 .map(BoardingPass::getSeat)

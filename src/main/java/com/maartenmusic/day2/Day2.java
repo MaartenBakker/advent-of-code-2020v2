@@ -1,7 +1,7 @@
 package com.maartenmusic.day2;
 
 import com.maartenmusic.util.FilePathGenerator;
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 
 import java.io.File;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Day2 {
 
     public static void main(String[] args) {
         File txtFile = new File(FilePathGenerator.getFilePath("day2"));
-        List<String> data = FileReaders.txtToStrings(txtFile);
+        List<String> data = TxtFileReaders.toStrings(txtFile);
 
         printResultPart1(data);
         printResultPart2(data);

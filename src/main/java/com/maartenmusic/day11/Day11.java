@@ -1,7 +1,7 @@
 package com.maartenmusic.day11;
 
 import com.maartenmusic.util.FilePathGenerator;
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 
 import java.io.File;
 import java.util.Arrays;
@@ -12,13 +12,13 @@ public class Day11 {
         File txtFile = new File(FilePathGenerator.getFilePath("day11"));
 
         long startList = System.nanoTime();
-        SeatingRoom2dList seatingRoom2dList = FileReaders.txtToSeatingRoom2dList(txtFile);
+        SeatingRoom2dList seatingRoom2dList = TxtFileReaders.toSeatingRoom2dList(txtFile);
 
         System.out.println(occupiedSeatsAtFinalState2dList(seatingRoom2dList));
         long finishList = System.nanoTime();
 
         long startMap = System.nanoTime();
-        SeatingRoomMap seatingRoomMap = FileReaders.txtToSeatingRoomMap(txtFile);
+        SeatingRoomMap seatingRoomMap = TxtFileReaders.toSeatingRoomMap(txtFile);
 
         System.out.println(occupiedSeatsAtFinalStateMapPart1(seatingRoomMap));
         long finishMap = System.nanoTime();

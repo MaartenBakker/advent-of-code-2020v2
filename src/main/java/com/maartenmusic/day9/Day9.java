@@ -1,7 +1,7 @@
 package com.maartenmusic.day9;
 
 import com.maartenmusic.util.FilePathGenerator;
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class Day9 {
     public static void main(String[] args) {
         File txtFile = new File(FilePathGenerator.getFilePath("day9"));
 
-        List<Long> data = FileReaders.txtToLongs(txtFile);
+        List<Long> data = TxtFileReaders.toLongs(txtFile);
 
         //Solution of part 1
         System.out.println(FirstNumberThatDoesNotFollowRule(data));

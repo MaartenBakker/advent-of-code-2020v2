@@ -1,7 +1,7 @@
 package com.maartenmusic.day1;
 
 import com.maartenmusic.util.FilePathGenerator;
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 
 import java.io.File;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Day1 {
         File txtFile = new File(FilePathGenerator.getFilePath("day1"));
 
     
-        List<Integer> data = FileReaders.txtToIntegers(txtFile);
+        List<Integer> data = TxtFileReaders.toIntegers(txtFile);
 
         int goal = 2020;
 

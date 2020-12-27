@@ -1,21 +1,18 @@
 package com.maartenmusic.day10;
 
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 import org.junit.jupiter.api.Test;
 
-import javax.annotation.processing.Filer;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class Day10Test {
 
     @Test
     void countPermutations() {
         File file = new File("src/test/java/com/maartenmusic/day10/testInput.txt");
-        List<Integer> data = FileReaders.txtToIntegers(file);
+        List<Integer> data = TxtFileReaders.toIntegers(file);
 
         data.add(0);
         data.add(Collections.max(data) + 3);
@@ -24,7 +21,7 @@ class Day10Test {
         System.out.println(Day10.countPermutations(data));
 
         file = new File("src/test/java/com/maartenmusic/day10/testInput2.txt");
-        data = FileReaders.txtToIntegers(file);
+        data = TxtFileReaders.toIntegers(file);
 
         data.add(0);
         data.add(Collections.max(data) + 3);

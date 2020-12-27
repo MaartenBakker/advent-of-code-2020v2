@@ -1,7 +1,7 @@
 package com.maartenmusic.day4;
 
 import com.maartenmusic.util.FilePathGenerator;
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class Day4 {
         validator.setPassportRegex("[0-9]{9}");
 
         File txtFile = new File(FilePathGenerator.getFilePath("day4"));
-        ArrayList<Passport> passports = FileReaders.txtToPassports(txtFile);
+        ArrayList<Passport> passports = TxtFileReaders.toPassports(txtFile);
 //        passports.forEach(Passport::generateMappedData);
 
         System.out.println(passports.stream().filter(validator::validatePasswordKeys).count());

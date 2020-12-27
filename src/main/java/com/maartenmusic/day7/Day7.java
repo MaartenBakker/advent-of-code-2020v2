@@ -1,7 +1,7 @@
 package com.maartenmusic.day7;
 
 import com.maartenmusic.util.FilePathGenerator;
-import com.maartenmusic.util.FileReaders;
+import com.maartenmusic.util.TxtFileReaders;
 
 import java.io.File;
 import java.util.*;
@@ -28,7 +28,7 @@ public class Day7 {
     }
 
     private static void printResultOfPart2(File txtFile) {
-        Map<String, Map<String, Integer>> rules = FileReaders.txtToColorAndAmountMap(txtFile);
+        Map<String, Map<String, Integer>> rules = TxtFileReaders.toColorAndAmountMap(txtFile);
         findTotalAmountOfBags("shinygold", rules);
         System.out.println(bagCount-1);
     }
@@ -46,7 +46,7 @@ public class Day7 {
     }
 
     private static void printResultOfPart1(File txtFile) {
-        Map<String, ArrayList<String>> rules = FileReaders.txtToBagAndColorsMap(txtFile);
+        Map<String, ArrayList<String>> rules = TxtFileReaders.toBagAndColorsMap(txtFile);
 
         Set<String> results = findBagsThatContainColor( "shinygold", rules);
 
