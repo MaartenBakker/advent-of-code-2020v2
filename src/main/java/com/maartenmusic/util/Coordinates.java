@@ -3,9 +3,11 @@ package com.maartenmusic.util;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Comparator;
 
+@ToString
 @AllArgsConstructor
 @Getter
 @Setter

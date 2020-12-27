@@ -76,7 +76,6 @@ public class Ship {
         move(-value, 0);
     }
 
-
     void move(int x, int y) {
         coordinates = coordinates.move(x, y);
     }
