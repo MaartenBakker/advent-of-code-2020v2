@@ -2,7 +2,7 @@ package com.maartenmusic.util;
 
 import com.maartenmusic.day11.SeatingRoom2dList;
 import com.maartenmusic.day11.SeatingRoomMap;
-import com.maartenmusic.day12.Action;
+import com.maartenmusic.day12.ShipAction;
 import com.maartenmusic.day8.Instruction;
 import org.junit.jupiter.api.Test;
 
@@ -69,7 +69,7 @@ class TxtFileReadersTest {
     @Test
     void toActions() {
         File txtFile = new File("src/test/java/com/maartenmusic/day12/testInput.txt");
-        List<Action> actions = TxtFileReaders.toActions(txtFile);
-        actions.forEach(System.out::println);
+        List<ShipAction> shipActions = TxtFileReaders.toShipActions(txtFile);
+        shipActions.forEach(System.out::println);
     }
 }

@@ -12,17 +12,17 @@ class WayPointShipTest {
 
     @Test
     void followActions() {
-        Action action1 = new Action('N', 10);
-        Action action2 = new Action('E', 10);
-        Action action3 = new Action('S', 90);
-        Action action4 = new Action('W', 10);
-        Action action5 = new Action('R', 180);
-        Action action6 = new Action('L', 90);
+        ShipAction shipAction1 = new ShipAction('N', 10);
+        ShipAction shipAction2 = new ShipAction('E', 10);
+        ShipAction shipAction3 = new ShipAction('S', 90);
+        ShipAction shipAction4 = new ShipAction('W', 10);
+        ShipAction shipAction5 = new ShipAction('R', 180);
+        ShipAction shipAction6 = new ShipAction('L', 90);
 
-        List<Action> actions = Arrays.asList(action1, action2, action3, action4, action5, action6);
+        List<ShipAction> shipActions = Arrays.asList(shipAction1, shipAction2, shipAction3, shipAction4, shipAction5, shipAction6);
 
         WayPointShip ship = new WayPointShip();
-        ship.followActions(actions);
+        ship.followActions(shipActions);
 
         assertEquals(new Coordinates(-79, -10), ship.getWaypointCoordinates());
     }
@@ -31,9 +31,16 @@ class WayPointShipTest {
     void consumeAction() {
         WayPointShip ship = new WayPointShip();
 
-        Action moveWayPointNorth = new Action('N', 1);
+        ShipAction moveWayPointNorth = new ShipAction('N', 1);
         ship.consumeAction(moveWayPointNorth);
         assertEquals(new Coordinates(10, 2), ship.getWaypointCoordinates());
+    }
+
+    @Test
+    void goTowardsWayPoint() {
+        WayPointShip ship = new WayPointShip();
+        ship.goTowardsWayPoint(10);
+        assertEquals(new Coordinates(100, 10), ship.getCoordinates());
     }
 
     @Test

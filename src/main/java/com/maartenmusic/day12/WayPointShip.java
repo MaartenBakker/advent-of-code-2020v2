@@ -14,39 +14,46 @@ public class WayPointShip extends Ship {
     }
 
     @Override
-    public void followActions(List<Action> actions) {
-        actions.forEach(this::consumeAction);
+    public void followActions(List<ShipAction> shipActions) {
+        shipActions.forEach(this::consumeAction);
     }
 
     @Override
-    void consumeAction(Action action) {
-        switch (action.getType()) {
+    void consumeAction(ShipAction shipAction) {
+        switch (shipAction.getType()) {
             case 'N':
-                wayPoint.moveNorth(action.getValue());
+                wayPoint.moveNorth(shipAction.getValue());
                 break;
             case 'S':
-                wayPoint.moveSouth(action.getValue());
+                wayPoint.moveSouth(shipAction.getValue());
                 break;
             case 'E':
-                wayPoint.moveEast(action.getValue());
+                wayPoint.moveEast(shipAction.getValue());
                 break;
             case 'W':
-                wayPoint.moveWest(action.getValue());
+                wayPoint.moveWest(shipAction.getValue());
                 break;
             case 'R':
-                turn(action.getValue());
+                turn(shipAction.getValue());
                 break;
             case 'L':
-                turn(-action.getValue());
+                turn(-shipAction.getValue());
                 break;
             case 'F':
-                goTowardsWayPoint(action.getValue());
+                goTowardsWayPoint(shipAction.getValue());
                 break;
             default:
-                throw new IllegalActionException("Can't process the given action: " + action.getType());
+                throw new IllegalActionException("Can't process the given action: " + shipAction.getType());
         }
     }
 
+    void goTowardsWayPoint(int value) {
+        int newX = wayPoint.getCoordinates().getX() * value;
+        int newY = wayPoint.getCoordinates().getY() * value;
+        move(newX, newY);
+    }
+
+    @Override
     void turn(int degrees) {
         if (degrees % 90 != 0) {
             throw new IllegalDegreesException("Degrees not divisible by 90. Degrees: " + degrees);

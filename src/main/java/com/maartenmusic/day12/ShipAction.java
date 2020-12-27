@@ -7,7 +7,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @Getter
-public class Action {
+public class ShipAction {
     private final char type;
     private final int value;
 }

@@ -12,15 +12,15 @@ class ShipTest {
 
     @Test
     void followActions() {
-        Action action1 = new Action('N', 10);
-        Action action2 = new Action('E', 10);
-        Action action3 = new Action('R', 90);
-        Action action4 = new Action('F', 10);
+        ShipAction shipAction1 = new ShipAction('N', 10);
+        ShipAction shipAction2 = new ShipAction('E', 10);
+        ShipAction shipAction3 = new ShipAction('R', 90);
+        ShipAction shipAction4 = new ShipAction('F', 10);
 
-        List<Action> actions = Arrays.asList(action1, action2, action3, action4);
+        List<ShipAction> shipActions = Arrays.asList(shipAction1, shipAction2, shipAction3, shipAction4);
 
         Ship ship = new Ship();
-        ship.followActions(actions);
+        ship.followActions(shipActions);
 
         assertEquals(new Coordinates(10, 0), ship.getCoordinates());
 
@@ -41,23 +41,23 @@ class ShipTest {
     void consumeAction() {
         Ship ship = new Ship();
 
-        Action moveNorth = new Action('N', 1);
+        ShipAction moveNorth = new ShipAction('N', 1);
         ship.consumeAction(moveNorth);
         assertEquals(new Coordinates(0, 1), ship.getCoordinates());
 
-        Action moveSouth = new Action('S', 2);
+        ShipAction moveSouth = new ShipAction('S', 2);
         ship.consumeAction(moveSouth);
         assertEquals(new Coordinates(0, -1), ship.getCoordinates());
 
-        Action moveEast = new Action('E', 10);
+        ShipAction moveEast = new ShipAction('E', 10);
         ship.consumeAction(moveEast);
         assertEquals(new Coordinates(10, -1), ship.getCoordinates());
 
-        Action moveWest = new Action('W', 11);
+        ShipAction moveWest = new ShipAction('W', 11);
         ship.consumeAction(moveWest);
         assertEquals(new Coordinates(-1, -1), ship.getCoordinates());
 
-        Action turnRight = new Action('R', 90);
+        ShipAction turnRight = new ShipAction('R', 90);
         ship.consumeAction(turnRight);
         assertEquals(Ship.Direction.SOUTH, ship.getDirection());
     }
@@ -65,8 +65,8 @@ class ShipTest {
     @Test
     void consumeActionIllegalAction() {
         Ship ship = new Ship();
-        Action illegalAction = new Action('Q', 30);
-        assertThrows(IllegalActionException.class, ()-> ship.consumeAction(illegalAction));
+        ShipAction illegalShipAction = new ShipAction('Q', 30);
+        assertThrows(IllegalActionException.class, ()-> ship.consumeAction(illegalShipAction));
     }
 
     @Test

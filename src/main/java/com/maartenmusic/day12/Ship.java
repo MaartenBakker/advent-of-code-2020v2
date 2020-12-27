@@ -16,32 +16,32 @@ public class Ship {
         this.direction = Direction.EAST;
     }
 
-    public void followActions(List<Action> actions) {
-        actions.forEach(this::consumeAction);
+    public void followActions(List<ShipAction> shipActions) {
+        shipActions.forEach(this::consumeAction);
     }
 
-    void consumeAction(Action action) {
-        switch (action.getType()) {
+    void consumeAction(ShipAction shipAction) {
+        switch (shipAction.getType()) {
             case 'N':
-                moveNorth(action.getValue());
+                moveNorth(shipAction.getValue());
                 break;
             case 'S':
-                moveSouth(action.getValue());
+                moveSouth(shipAction.getValue());
                 break;
             case 'E':
-                moveEast(action.getValue());
+                moveEast(shipAction.getValue());
                 break;
             case 'W':
-                moveWest(action.getValue());
+                moveWest(shipAction.getValue());
                 break;
             case 'R':
-                turn(action.getValue());
+                turn(shipAction.getValue());
                 break;
             case 'L':
-                turn(-action.getValue());
+                turn(-shipAction.getValue());
                 break;
             case 'F':
-                goForward(action.getValue());
+                goForward(shipAction.getValue());
                 break;
             default:
                 throw new IllegalActionException("Can't process the given action");

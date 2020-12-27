@@ -10,14 +10,25 @@ public class Day12 {
 
     public static void main(String[] args) {
         System.out.println(getResultPart1());
+        System.out.println(getResultPart2());
     }
 
     private static int getResultPart1() {
         File txtFile = new File(FilePathGenerator.getFilePath("day12"));
-        List<Action> actions = TxtFileReaders.toActions(txtFile);
+        List<ShipAction> shipActions = TxtFileReaders.toShipActions(txtFile);
 
         Ship unsinkableII = new Ship();
-        unsinkableII.followActions(actions);
+        unsinkableII.followActions(shipActions);
         return unsinkableII.getCoordinates().manhattanDistance();
+    }
+
+    private static int getResultPart2() {
+        File txtFile = new File(FilePathGenerator.getFilePath("day12"));
+        List<ShipAction> shipActions = TxtFileReaders.toShipActions(txtFile);
+
+        Ship unsinkableIII = new WayPointShip();
+        unsinkableIII.followActions(shipActions);
+        return unsinkableIII.getCoordinates().manhattanDistance();
+
     }
 }

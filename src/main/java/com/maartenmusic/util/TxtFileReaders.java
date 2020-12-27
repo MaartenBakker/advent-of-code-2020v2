@@ -3,7 +3,7 @@ package com.maartenmusic.util;
 import com.maartenmusic.day11.SeatSpace;
 import com.maartenmusic.day11.SeatingRoom2dList;
 import com.maartenmusic.day11.SeatingRoomMap;
-import com.maartenmusic.day12.Action;
+import com.maartenmusic.day12.ShipAction;
 import com.maartenmusic.day4.Passport;
 import com.maartenmusic.day8.Instruction;
 import com.maartenmusic.day8.Operation;
@@ -264,20 +264,29 @@ public class TxtFileReaders {
         return passports;
     }
 
-    public static List<Action> toActions(File file) {
-        List<Action> actions = new ArrayList<>();
+    public static List<ShipAction> toShipActions(File file) {
+        List<ShipAction> shipActions = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                Action action = new Action(line.charAt(0), Integer.parseInt(line.substring(1)));
-                actions.add(action);
+                ShipAction shipAction = new ShipAction(line.charAt(0), Integer.parseInt(line.substring(1)));
+                shipActions.add(shipAction);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return actions;
+        return shipActions;
+    }
+
+    public static int toTimeStamp(File file) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            return Integer.parseInt(reader.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
 }
