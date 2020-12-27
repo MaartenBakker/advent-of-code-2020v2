@@ -289,4 +289,25 @@ public class TxtFileReaders {
         return -1;
     }
 
+    public static List<Integer> toBusIDs(File file) {
+        List<Integer> busIDs = new ArrayList<>();
+        String line = "";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            reader.readLine(); //skip first line;
+            line = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String[] splitLine = line.split(",");
+        for (String character : splitLine) {
+            if (!character.equals("x")) {
+                busIDs.add(Integer.parseInt(character));
+            }
+        }
+
+        return busIDs;
+    }
+
 }

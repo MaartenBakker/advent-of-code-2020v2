@@ -72,4 +72,18 @@ class TxtFileReadersTest {
         List<ShipAction> shipActions = TxtFileReaders.toShipActions(txtFile);
         shipActions.forEach(System.out::println);
     }
+
+    @Test
+    void toTimeStamp() {
+        File txtFile = new File("src/test/java/com/maartenmusic/day13/testInput.txt");
+        int timeStamp = TxtFileReaders.toTimeStamp(txtFile);
+        System.out.println(timeStamp);
+    }
+
+    @Test
+    void toBusIDs() {
+        File txtFile = new File("src/test/java/com/maartenmusic/day13/testInput.txt");
+        List<Integer> busIDs = TxtFileReaders.toBusIDs(txtFile);
+        busIDs.forEach(System.out::println);
+    }
 }
