@@ -86,6 +86,7 @@ public class Ship {
         }
 
         List<Direction> directionList = Arrays.asList(Direction.values());
+
         int currentDirectionIndex = directionList.indexOf(this.direction);
 
         int quarterTurns = getQuarterTurns(degrees);

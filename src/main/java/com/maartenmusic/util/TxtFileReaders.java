@@ -4,6 +4,7 @@ import com.maartenmusic.day11.SeatSpace;
 import com.maartenmusic.day11.SeatingRoom2dList;
 import com.maartenmusic.day11.SeatingRoomMap;
 import com.maartenmusic.day12.ShipAction;
+import com.maartenmusic.day13.Bus;
 import com.maartenmusic.day4.Passport;
 import com.maartenmusic.day8.Instruction;
 import com.maartenmusic.day8.Operation;
@@ -331,6 +332,28 @@ public class TxtFileReaders {
         }
 
         return busIDsAndIndex;
+    }
+
+    public static List<Bus> toBuses(File file) {
+        List<Bus> buses = new ArrayList<>();
+        String line = "";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            reader.readLine(); //skip first line;
+            line = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<String> splitLine = Arrays.asList(line.split(","));
+
+        for (int i = 0; i < splitLine.size(); i++) {
+            String character = splitLine.get(i);
+            if(!character.equals("x")) {
+                buses.add(new Bus(Long.parseLong(character), i));
+            }
+        }
+        return buses;
     }
 
 }
