@@ -4,9 +4,11 @@ import com.maartenmusic.util.FilePathGenerator;
 import com.maartenmusic.util.TxtFileReaders;
 
 import java.io.File;
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Day13 {
     public static void main(String[] args) {
@@ -16,18 +18,19 @@ public class Day13 {
 
     }
 
-    static long getResultOfPart2(File txtFile) {
+    static BigInteger getResultOfPart2(File txtFile) {
         Map<Integer, Integer> busIdsAndIndex = TxtFileReaders.toBusIdsAndIndex(txtFile);
         List<Integer> busIds = TxtFileReaders.toBusIDs(txtFile);
-        int startCount = Collections.max(busIds);
+//        int startCount = 100000000000000;
+        BigInteger startCount = new BigInteger(String.valueOf(Collections.max(busIds)));
         System.out.println(startCount);
-        int counter = startCount;
+        BigInteger counter = new BigInteger(startCount.toString());
 
         while(true) {
-            if (checkIDsAndIndex(busIds, busIdsAndIndex, counter - busIdsAndIndex.get(startCount))) {
-                return counter - busIdsAndIndex.get(startCount);
+            if (checkIDsAndIndex(busIds, busIdsAndIndex, counter.subtract(BigInteger.valueOf(busIdsAndIndex.get(startCount.intValue()))))) {
+                return counter.subtract(BigInteger.valueOf(busIdsAndIndex.get(startCount.intValue())));
             }
-            counter += startCount;
+            counter = counter.add(startCount);
         }
     }
 
@@ -39,9 +42,9 @@ public class Day13 {
 //    if make it to all id's
 //    return true
 
-    static boolean checkIDsAndIndex(List<Integer> busIds, Map<Integer, Integer> busIdsAndIndex, int counter) {
+    static boolean checkIDsAndIndex(List<Integer> busIds, Map<Integer, Integer> busIdsAndIndex, BigInteger counter) {
         for (int id : busIds) {
-            int currentCounter = counter + busIdsAndIndex.get(id);
+            BigInteger currentCounter = counter.add(BigInteger.valueOf(busIdsAndIndex.get(id)));
             if (!checkId(id, currentCounter)) {
                 return false;
             }
@@ -49,8 +52,8 @@ public class Day13 {
         return true;
     }
 
-    static boolean checkId(int id, int counter) {
-        return counter % id == 0;
+    static boolean checkId(int id, BigInteger counter) {
+        return counter.mod(BigInteger.valueOf(id)).equals(new BigInteger("0"));
     }
 
 
