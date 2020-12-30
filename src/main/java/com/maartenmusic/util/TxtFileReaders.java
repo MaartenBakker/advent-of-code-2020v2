@@ -5,6 +5,10 @@ import com.maartenmusic.day11.SeatingRoom2dList;
 import com.maartenmusic.day11.SeatingRoomMap;
 import com.maartenmusic.day12.ShipAction;
 import com.maartenmusic.day13.Bus;
+import com.maartenmusic.day14.BitMask;
+import com.maartenmusic.day14.DockingComputer;
+import com.maartenmusic.day14.DockingInstruction;
+import com.maartenmusic.day14.MemoryInstruction;
 import com.maartenmusic.day4.Passport;
 import com.maartenmusic.day8.Instruction;
 import com.maartenmusic.day8.Operation;
@@ -354,6 +358,32 @@ public class TxtFileReaders {
             }
         }
         return buses;
+    }
+
+    public static List<DockingInstruction> toDockingInstructions(File file) {
+        List<DockingInstruction> instructions = new ArrayList<>();
+        String line = "";
+
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+
+            while ((line = reader.readLine()) != null) {
+                String[] splitLine = line.split(" = ");
+
+                if (splitLine[0].equals("mask")) {
+                    instructions.add(new BitMask(splitLine[1]));
+                } else {
+                    String memoryAddress = splitLine[0].substring(4, splitLine[0].length() - 1);
+                    String memoryValue = splitLine[1];
+                    instructions.add(new MemoryInstruction(Integer.parseInt(memoryAddress), Long.parseLong(memoryValue)));
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return instructions;
     }
 
 }

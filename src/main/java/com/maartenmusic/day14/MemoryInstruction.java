@@ -9,5 +9,5 @@ import lombok.ToString;
 @ToString
 public class MemoryInstruction extends DockingInstruction {
     private final int address;
-    private final int value;
+    private final Long value;
 }

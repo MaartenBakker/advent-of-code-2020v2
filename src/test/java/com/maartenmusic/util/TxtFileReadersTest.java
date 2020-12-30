@@ -4,6 +4,7 @@ import com.maartenmusic.day11.SeatingRoom2dList;
 import com.maartenmusic.day11.SeatingRoomMap;
 import com.maartenmusic.day12.ShipAction;
 import com.maartenmusic.day13.Bus;
+import com.maartenmusic.day14.DockingInstruction;
 import com.maartenmusic.day8.Instruction;
 import org.junit.jupiter.api.Test;
 
@@ -100,5 +101,12 @@ class TxtFileReadersTest {
         File txtFile = new File("src/test/java/com/maartenmusic/day13/testInput.txt");
         List<Bus> buses = TxtFileReaders.toBuses(txtFile);
         buses.forEach(System.out::println);
+    }
+
+    @Test
+    void toDockingInstructions() {
+        File txtFile = new File("src/test/java/com/maartenmusic/day14/testInput.txt");
+        List<DockingInstruction> instructions = TxtFileReaders.toDockingInstructions(txtFile);
+        instructions.forEach(System.out::print);
     }
 }
