@@ -9,4 +9,16 @@ import lombok.ToString;
 @ToString
 public class BitMask extends DockingInstruction {
     private final String mask;
+    
+    public String getMaskedString(String bits) {
+        StringBuilder bitsString = new StringBuilder(bits);
+
+        for (int i = 0; i < mask.length() ; i++) {
+            if (mask.charAt(i) != 'X') {
+                bitsString.setCharAt(i, mask.charAt(i));
+            }
+        }
+
+        return bitsString.toString();
+    }
 }

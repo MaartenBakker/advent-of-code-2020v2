@@ -6,7 +6,6 @@ import com.maartenmusic.day11.SeatingRoomMap;
 import com.maartenmusic.day12.ShipAction;
 import com.maartenmusic.day13.Bus;
 import com.maartenmusic.day14.BitMask;
-import com.maartenmusic.day14.DockingComputer;
 import com.maartenmusic.day14.DockingInstruction;
 import com.maartenmusic.day14.MemoryInstruction;
 import com.maartenmusic.day4.Passport;
