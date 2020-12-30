@@ -107,6 +107,6 @@ class TxtFileReadersTest {
     void toDockingInstructions() {
         File txtFile = new File("src/test/java/com/maartenmusic/day14/testInput.txt");
         List<DockingInstruction> instructions = TxtFileReaders.toDockingInstructions(txtFile);
-        instructions.forEach(System.out::print);
+        instructions.forEach(System.out::println);
     }
 }
