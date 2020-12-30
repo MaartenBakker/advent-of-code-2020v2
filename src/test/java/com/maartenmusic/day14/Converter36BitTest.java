@@ -14,6 +14,13 @@ class Converter36BitTest {
     }
 
     @Test
+    void toLong() {
+        System.out.println(Long.parseLong("000000000000000000000000000000000001", 2));
+        System.out.println(Long.parseLong("000000000000000000000000000000000101", 2));
+        System.out.println(Long.parseLong("000000000000000000000000000000001001", 2));
+    }
+
+    @Test
     void toBinaryString() {
         System.out.println(Long.toBinaryString(8L));
         System.out.println(Long.toBinaryString(6L));
