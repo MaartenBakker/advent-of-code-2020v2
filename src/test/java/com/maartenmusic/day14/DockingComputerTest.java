@@ -16,10 +16,11 @@ class DockingComputerTest {
 
         memory.put(0, 10L);
         memory.put(1, 15L);
-        memory.put(0, 5L);
+        memory.put(0, 5L); // checking for overwrites
+        memory.put(10000, 5555555L);
 
         dockingComputer.setMemory(memory);
 
-        assertEquals(20L, dockingComputer.getSumOfMemory());
+        assertEquals(5555575L, dockingComputer.getSumOfMemory());
     }
 }

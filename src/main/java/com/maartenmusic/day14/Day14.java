@@ -17,9 +17,11 @@ public class Day14 {
 //                                      - bewerk met this.bitMask ( maskedBitValue = bitMask.mask(value) ?)
 //                                      - vertaal terug naar int. maskedIntValue
 //                                      - sla op: memory.put(MemoryInstruction.getAddress, maskedValue)
-//        getSumOfMemory = memory.values().stream().reduce(Integer::Sum);
+//        X getSumOfMemory = memory.values().stream().reduce(Integer::Sum);
 //
 //        Class 36BitConverter?? Integer.toBinaryString(int num)
+
+
 
     }
 }
