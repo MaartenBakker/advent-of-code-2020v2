@@ -16,7 +16,7 @@ class DockingComputerTest {
 
         memory.put(0, 10L);
         memory.put(1, 15L);
-        memory.put(0, 5L); // checking for overwrites
+        memory.put(0, 5L); // to check if overwrites work
         memory.put(10000, 5555555L);
 
         dockingComputer.setMemory(memory);

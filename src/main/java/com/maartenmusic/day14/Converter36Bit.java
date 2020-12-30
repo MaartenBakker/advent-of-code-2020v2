@@ -1,7 +1,5 @@
 package com.maartenmusic.day14;
 
-import java.util.stream.IntStream;
-
 public class Converter36Bit {
 
     static String to36BitString(Long number) {

@@ -1,6 +1,5 @@
 package com.maartenmusic.day14;
 
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashMap;
@@ -18,10 +17,14 @@ public class DockingComputer {
     }
 
     public void followInstructions(List<DockingInstruction> instructions) {
+
         for (DockingInstruction instruction : instructions) {
             if (instruction.getClass().equals(BitMask.class)) {
+
                 this.bitMask = (BitMask) instruction;
+
             } else if (instruction.getClass().equals(MemoryInstruction.class))  {
+
                 handleMemoryInstruction((MemoryInstruction) instruction);
             }
         }
@@ -31,6 +34,7 @@ public class DockingComputer {
         String bit36 = Converter36Bit.to36BitString(instruction.getValue());
         String maskedBits = bitMask.getMaskedString(bit36);
         Long convertedNumber = Long.parseLong(maskedBits, 2);
+
         memory.put(instruction.getAddress(), convertedNumber);
     }
 

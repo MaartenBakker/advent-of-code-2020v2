@@ -29,8 +29,6 @@ public class Day14 {
 
         File txtFile = new File(FilePathGenerator.getFilePath("day14"));
         System.out.println(getResultOfPart1(txtFile));
-
-
     }
 
     static Long getResultOfPart1(File txtFile) {

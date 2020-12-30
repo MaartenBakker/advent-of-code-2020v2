@@ -13,6 +13,7 @@ public class BitMask extends DockingInstruction {
     public String getMaskedString(String bits) {
         StringBuilder bitsString = new StringBuilder(bits);
 
+        // insert 1's & 0's from given mask
         for (int i = 0; i < mask.length() ; i++) {
             if (mask.charAt(i) != 'X') {
                 bitsString.setCharAt(i, mask.charAt(i));
