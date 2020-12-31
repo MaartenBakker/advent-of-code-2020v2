@@ -12,6 +12,7 @@ public class Day14 {
 
         File txtFile = new File(FilePathGenerator.getFilePath("day14"));
         System.out.println(getResultOfPart1(txtFile));
+        System.out.println(getResultOfPart2(txtFile));
 
 //        Part 2
 //
@@ -23,33 +24,42 @@ public class Day14 {
 //             * - apply mask -> List of memoryAdresses
 //              - save MemoryInstruction.value to every address
 //
-//          *   vertaal MemoryInstruction naar 36 bit
-//              new StringBuilder
-//              iterate over chars of MemoryInstruction en Mask
-//              '0' -> sb.add char uit MemoryInstruction
-//              '1' || 'X' -> sb.add char uit Mask
-//              String startingBits = sb.toString();
+//          *   X vertaal MemoryInstruction naar 36 bit
+//              X new StringBuilder
+//              X iterate over chars of bitAddress en Mask
+//              X '0' -> sb.add char uit bitAddress
+//              X '1' || 'X' -> sb.add char uit Mask
+//              X String bitsWithX = sb.toString();
 //
-//              List<Integer> indexesOfX;
+//              X List<Integer> indexesOfX;
 //
-//              List<String> allPermutations(List<String> permutations)
-//              allPermutations.add(startingBits);
+//              X List<String> allPermutations(List<String> permutations)
+//              X allPermutations.add(bitsWithX);
 //
-//              for i < indexesOfX.size() {
+//              X for i < indexesOfX.size() {
 //
-//              List<String> nextPermutations = new ArrayList<String>
-//              for (String permutation : permutations) {
+//              X List<String> nextPermutations = new ArrayList<String>
+//              X for (String permutation : permutations) {
 //
 //
-//              maak kopie van startingBits;
-//              vervang eerste charAt(i) met 0, -> add to nextPermutations
-//              vervang eerste charAt(i) met 1, -> add to nextPermutations;
+//              X maak kopie van bitsWithX;
+//              X vervang eerste charAt(indexesOfX.get(i)) met 0, -> add to nextPermutations
+//              X vervang eerste charAt(indexesOfX.get(i)) met 1, -> add to nextPermutations;
 //
-//              allPermutations = nextPermutations
+//              X allPermutations = nextPermutations
 //
 //              }
 
 
+    }
+
+    static Long getResultOfPart2(File txtFile) {
+        List<DockingInstruction> instructions = TxtFileReaders.toDockingInstructions(txtFile);
+
+        DockingComputer dockingComputer = new DockingComputer();
+        dockingComputer.followInstructionsV2(instructions);
+
+        return dockingComputer.getSumOfMemory();
     }
 
     static Long getResultOfPart1(File txtFile) {
