@@ -9,26 +9,47 @@ import java.util.List;
 public class Day14 {
 
     public static void main(String[] args) {
-//        X read data into list<DockingInstruction>
-//        X abstract class DockingInstruction
-//        X class MemoryInstruction heeft address en value
-//        X class BitMask heeft mask;
-//        X class DockingComputer heeft List<DockingInstruction> instructions
-//        X heeft BitMask bitMask
-//        X heeft Map<address, value> memory
-//        method followInstructions()
-//            X - lees eerstvolgende DockingInstruction van instructions
-//            X - if getClass(BitMask) -> this.bitMask = BitMask
-//            - if MemoryInstruction -> X - vertaal value naar 36 bits bitValue
-//                                      X - bewerk met this.bitMask ( maskedBitValue = bitMask.mask(value) ?)
-//                                      X - vertaal terug naar Long. maskedLongValue
-//                                      X - sla op: memory.put(MemoryInstruction.getAddress, maskedValue)
-//        X getSumOfMemory = memory.values().stream().reduce(Integer::Sum);
-//
-//        X Class 36BitConverter?? Integer.toBinaryString(int num)
 
         File txtFile = new File(FilePathGenerator.getFilePath("day14"));
         System.out.println(getResultOfPart1(txtFile));
+
+//        Part 2
+//
+//        X Load data
+//        dockingComputer.followInstructionsV2
+//          - read instructions
+//          - if getClass(instruction).equals(BitMask.class) zelfde als v1
+//          - if MemoryInstruction.class ->
+//             * - apply mask -> List of memoryAdresses
+//              - save MemoryInstruction.value to every address
+//
+//          *   vertaal MemoryInstruction naar 36 bit
+//              new StringBuilder
+//              iterate over chars of MemoryInstruction en Mask
+//              '0' -> sb.add char uit MemoryInstruction
+//              '1' || 'X' -> sb.add char uit Mask
+//              String startingBits = sb.toString();
+//
+//              List<Integer> indexesOfX;
+//
+//              List<String> allPermutations(List<String> permutations)
+//              allPermutations.add(startingBits);
+//
+//              for i < indexesOfX.size() {
+//
+//              List<String> nextPermutations = new ArrayList<String>
+//              for (String permutation : permutations) {
+//
+//
+//              maak kopie van startingBits;
+//              vervang eerste charAt(i) met 0, -> add to nextPermutations
+//              vervang eerste charAt(i) met 1, -> add to nextPermutations;
+//
+//              allPermutations = nextPermutations
+//
+//              }
+
+
     }
 
     static Long getResultOfPart1(File txtFile) {
