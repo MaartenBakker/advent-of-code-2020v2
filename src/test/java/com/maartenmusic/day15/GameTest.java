@@ -44,7 +44,14 @@ class GameTest {
         game = new Game(startingNumbers);
 
         assertEquals(10, game.playGame(2020));
+    }
 
+    @Test
+    void playGameTooFewRoundsException() {
+        List<Integer> startingNumbers = Arrays.asList(0,3,6);
+        Game game = new Game(startingNumbers);
+
+        assertThrows(TooFewRoundsException.class, () -> game.playGame(1));
     }
 
     @Test

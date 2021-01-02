@@ -21,6 +21,4 @@ public class Day15 {
         Game game = new Game(startingNumbers);
         return game.playGame(30000000);
     }
-
-
 }
