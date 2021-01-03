@@ -21,7 +21,56 @@ public class Day16 {
 
         removeInvalidTickets(tickets, rules);
 
-//        if field with index i of each ticket matches a certain rule, that rule is bound to that index.
+        Map<Integer, List<Rule>> indexesOfRules = getIndexesOfRules(rules, tickets);
+
+        Map<Integer, Rule> uniqueRules = getUniqueRules(indexesOfRules);
+
+        List<Integer> requiredEntries = uniqueRules.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().getName().contains("departure"))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+
+        File myTicketFile = new File("src/main/java/com/maartenmusic/day16/inputMyTicket.txt");
+        Ticket myTicket = TxtFileReaders.toTicket(myTicketFile);
+
+        return requiredEntries.stream()
+                .map(i -> myTicket.getFields().get(i))
+                .map(i -> (long)i)
+                .reduce((a,b) -> a * b)
+                .orElse(-1L);
+    }
+
+    private static Map<Integer, Rule> getUniqueRules(Map<Integer, List<Rule>> indexesOfRules) {
+        // find out how rules must be distributed (most rules match more than one list of fields)
+        // find value with length of 1, this rule must be tied to this list of fields;
+        // add to new map
+        // remove that rule from all other values
+        // repeat
+        Map<Integer, Rule> uniqueRules = new HashMap<>();
+
+        while (indexesOfRules.size() > 0) {
+            // intialize rule to make .remove happy
+            Rule uniqueRule = new Rule("justForInit", Arrays.asList(new Range(0, 0), new Range(1, 1)));
+            int uniqueRuleKey = 0;
+            for (Map.Entry<Integer, List<Rule>> mapEntry : indexesOfRules.entrySet()) {
+                if (mapEntry.getValue().size() == 1) {
+                    uniqueRule = mapEntry.getValue().get(0);
+                    uniqueRuleKey = mapEntry.getKey();
+                    uniqueRules.put(uniqueRuleKey, uniqueRule);
+                }
+            }
+
+            indexesOfRules.remove(uniqueRuleKey);
+
+            for (List<Rule> rulesList : indexesOfRules.values()) {
+                rulesList.remove(uniqueRule);
+            }
+        }
+        return uniqueRules;
+    }
+
+    private static Map<Integer, List<Rule>> getIndexesOfRules(List<Rule> rules, List<Ticket> tickets) {
 
         Map<Integer, List<Rule>> indexesOfRules = new HashMap<>();
 
@@ -44,46 +93,7 @@ public class Day16 {
                 }
             }
         }
-
-        // find out how rules must be distributed (most rules match more than one list of fields)
-        // find value with length of 1, this rule must be tied to this list of fields;
-        // add to new map
-        // remove that rule from all other values
-        // repeat
-        Map<Integer, Rule> uniqueRules = new HashMap<>();
-
-        while (indexesOfRules.size() > 0) {
-            Rule uniqueRule = new Rule("justForInit", Arrays.asList(new Range(0, 0), new Range(1, 1)));
-            int uniqueRuleKey = 0;
-            for (Map.Entry<Integer, List<Rule>> mapEntry : indexesOfRules.entrySet()) {
-                if (mapEntry.getValue().size() == 1) {
-                    uniqueRule = mapEntry.getValue().get(0);
-                    uniqueRuleKey = mapEntry.getKey();
-                    uniqueRules.put(uniqueRuleKey, uniqueRule);
-                }
-            }
-
-            indexesOfRules.remove(uniqueRuleKey);
-
-            for (List<Rule> rulesList : indexesOfRules.values()) {
-                rulesList.remove(uniqueRule);
-            }
-        }
-
-        List<Integer> requiredEntries = uniqueRules.entrySet()
-                .stream()
-                .filter(entry -> entry.getValue().getName().contains("departure"))
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
-
-        File myTicketFile = new File("src/main/java/com/maartenmusic/day16/inputMyTicket.txt");
-        Ticket myTicket = TxtFileReaders.toTicket(myTicketFile);
-
-        return requiredEntries.stream()
-                .map(i -> myTicket.getFields().get(i))
-                .map(i -> (long)i)
-                .reduce((a,b) -> a * b)
-                .get();
+        return indexesOfRules;
     }
 
     public static boolean removeInvalidTickets(List<Ticket> tickets, List<Rule> rules) {
