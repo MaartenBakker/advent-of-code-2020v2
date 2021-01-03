@@ -1,7 +1,9 @@
 package com.maartenmusic.day16;
 
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 
+@ToString
 @AllArgsConstructor
 public class Range {
     private final int min;

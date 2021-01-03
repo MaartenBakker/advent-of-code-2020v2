@@ -8,12 +8,16 @@ import com.maartenmusic.day13.Bus;
 import com.maartenmusic.day14.BitMask;
 import com.maartenmusic.day14.DockingInstruction;
 import com.maartenmusic.day14.MemoryInstruction;
+import com.maartenmusic.day16.Range;
+import com.maartenmusic.day16.Rule;
+import com.maartenmusic.day16.Ticket;
 import com.maartenmusic.day4.Passport;
 import com.maartenmusic.day8.Instruction;
 import com.maartenmusic.day8.Operation;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class TxtFileReaders {
 
@@ -383,6 +387,79 @@ public class TxtFileReaders {
         }
 
         return instructions;
+    }
+
+    public static Ticket toTicket(File file) {
+        String line = "";
+        Ticket ticket = new Ticket(null);
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+
+            while ((line = reader.readLine()) != null) {
+                String[] splitLine = line.split(",");
+                List<Integer> fields = Arrays.stream(splitLine)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+                ticket = new Ticket(fields);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return ticket;
+    }
+
+    public static List<Ticket> toTickets(File file) {
+        List<Ticket> tickets = new ArrayList<>();
+        String line = "";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+
+            while ((line = reader.readLine()) != null) {
+                String[] splitLine = line.split(",");
+                List<Integer> fields = Arrays.stream(splitLine)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+                Ticket ticket = new Ticket(fields);
+                tickets.add(ticket);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return tickets;
+    }
+
+    public static List<Rule> toRules(File file) {
+        List<Rule> rules = new ArrayList<>();
+        String line = "";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+
+            while ((line = reader.readLine()) != null) {
+                String[] splitLine = line.split(": ");
+                String name = splitLine[0];
+
+                String[] ranges = splitLine[1].split(" or ");
+                String[] range1Strings = ranges[0].split("-");
+                String[] range2Strings = ranges[1].split("-");
+
+                Range range1 = new Range(Integer.parseInt(range1Strings[0])
+                        , Integer.parseInt(range1Strings[1]));
+
+                Range range2 = new Range(Integer.parseInt(range2Strings[0])
+                        , Integer.parseInt(range2Strings[1]));
+
+                rules.add(new Rule(name, Arrays.asList(range1, range2)));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return rules;
     }
 
 }
