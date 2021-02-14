@@ -1,8 +1,10 @@
 package com.maartenmusic.util;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class Coordinates3D  {
     private final int x;
     private final int y;

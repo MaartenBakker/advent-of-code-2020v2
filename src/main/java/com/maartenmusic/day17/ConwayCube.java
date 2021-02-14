@@ -2,6 +2,7 @@ package com.maartenmusic.day17;
 
 import com.maartenmusic.util.Coordinates3D;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,5 +48,12 @@ public class ConwayCube {
     @Override
     public int hashCode() {
         return coordinates3D.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "ConwayCube{" +
+                "coordinates3D=" + coordinates3D +
+                '}';
     }
 }
