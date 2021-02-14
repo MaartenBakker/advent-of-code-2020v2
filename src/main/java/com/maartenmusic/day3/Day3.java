@@ -22,7 +22,7 @@ public class Day3 {
 //        if (posx > string.length() - 1) {
 //            posx = posx - string.length();
 //        }
-        File txtFile = new File(FilePathGenerator.getFilePath("day3"));
+        File txtFile = new File(FilePathGenerator.generate("day3"));
         List<String> data = TxtFileReaders.toStrings(txtFile);
 
         int a = (countTrees(data, new Directions(1, 1)));

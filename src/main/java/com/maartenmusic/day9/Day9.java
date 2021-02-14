@@ -12,7 +12,7 @@ import java.util.List;
 public class Day9 {
 
     public static void main(String[] args) {
-        File txtFile = new File(FilePathGenerator.getFilePath("day9"));
+        File txtFile = new File(FilePathGenerator.generate("day9"));
 
         List<Long> data = TxtFileReaders.toLongs(txtFile);
 

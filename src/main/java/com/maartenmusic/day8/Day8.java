@@ -10,7 +10,7 @@ public class Day8 {
     private static int listIndex;
 
     public static void main(String[] args) {
-        File txtFile = new File(FilePathGenerator.getFilePath("day8"));
+        File txtFile = new File(FilePathGenerator.generate("day8"));
 
         printSolutionPart1(txtFile);
 

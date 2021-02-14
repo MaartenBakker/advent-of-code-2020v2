@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Day13 {
     public static void main(String[] args) {
-        File txtFile = new File(FilePathGenerator.getFilePath("day13"));
+        File txtFile = new File(FilePathGenerator.generate("day13"));
         System.out.println(getResultOfPart1(txtFile));
         System.out.println(getResultOfPart2(txtFile));
 

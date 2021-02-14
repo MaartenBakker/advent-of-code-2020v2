@@ -9,7 +9,7 @@ import java.util.List;
 public class Day2 {
 
     public static void main(String[] args) {
-        File txtFile = new File(FilePathGenerator.getFilePath("day2"));
+        File txtFile = new File(FilePathGenerator.generate("day2"));
         List<String> data = TxtFileReaders.toStrings(txtFile);
 
         printResultPart1(data);

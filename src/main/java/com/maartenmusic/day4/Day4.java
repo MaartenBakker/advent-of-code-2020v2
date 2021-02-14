@@ -25,7 +25,7 @@ public class Day4 {
         validator.setAllowedEyeColors(Arrays.asList("amb", "blu", "brn", "gry", "grn", "hzl", "oth"));
         validator.setPassportRegex("[0-9]{9}");
 
-        File txtFile = new File(FilePathGenerator.getFilePath("day4"));
+        File txtFile = new File(FilePathGenerator.generate("day4"));
         ArrayList<Passport> passports = TxtFileReaders.toPassports(txtFile);
 //        passports.forEach(Passport::generateMappedData);
 

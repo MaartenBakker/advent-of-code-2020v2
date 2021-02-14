@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Day11 {
 
     public static void main(String[] args) {
-        File txtFile = new File(FilePathGenerator.getFilePath("day11"));
+        File txtFile = new File(FilePathGenerator.generate("day11"));
 
         long startList = System.nanoTime();
         SeatingRoom2dList seatingRoom2dList = TxtFileReaders.toSeatingRoom2dList(txtFile);

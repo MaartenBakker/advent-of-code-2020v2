@@ -11,6 +11,7 @@ import com.maartenmusic.day14.MemoryInstruction;
 import com.maartenmusic.day16.Range;
 import com.maartenmusic.day16.Rule;
 import com.maartenmusic.day16.Ticket;
+import com.maartenmusic.day17.ConwayCube;
 import com.maartenmusic.day4.Passport;
 import com.maartenmusic.day8.Instruction;
 import com.maartenmusic.day8.Operation;
@@ -460,6 +461,30 @@ public class TxtFileReaders {
         }
 
         return rules;
+    }
+
+    public static List<ConwayCube> toConwayCubes(File file) {
+        List<ConwayCube> cubes = new ArrayList<>();
+        String line = "";
+        int yCount = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+
+            while ((line = reader.readLine()) != null) {
+                String[] splitLine = line.split("");
+                for (int i = 0; i < splitLine.length; i++) {
+                    if (splitLine[i].equals("#")) {
+                        cubes.add(new ConwayCube(new Coordinates3D(i, yCount, 0)));
+                    }
+                }
+                yCount ++;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return cubes;
     }
 
 }

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class Day5 {
 
     public static void main(String[] args) {
-        File file = new File(FilePathGenerator.getFilePath("day5"));
+        File file = new File(FilePathGenerator.generate("day5"));
 
         printResultOfPart1(file);
 

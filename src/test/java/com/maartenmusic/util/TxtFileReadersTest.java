@@ -7,6 +7,7 @@ import com.maartenmusic.day13.Bus;
 import com.maartenmusic.day14.DockingInstruction;
 import com.maartenmusic.day16.Rule;
 import com.maartenmusic.day16.Ticket;
+import com.maartenmusic.day17.ConwayCube;
 import com.maartenmusic.day8.Instruction;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +34,7 @@ class TxtFileReadersTest {
     @Test
     void toBagAndColorsMap() {
 
-        File txtFile = new File(FilePathGenerator.getFilePath("day7"));
+        File txtFile = new File(FilePathGenerator.generate("day7"));
 
         Map<String, ArrayList<String>> rules = TxtFileReaders.toBagAndColorsMap(txtFile);
 
@@ -44,7 +45,7 @@ class TxtFileReadersTest {
     @Test
     void toColorAndAmountMap() {
 
-        File txtFile = new File(FilePathGenerator.getFilePath("day7"));
+        File txtFile = new File(FilePathGenerator.generate("day7"));
         Map<String, Map<String, Integer>> rules = TxtFileReaders.toColorAndAmountMap(txtFile);
 
 //        rules.keySet().stream().sorted().forEach(System.out::println);
@@ -131,5 +132,12 @@ class TxtFileReadersTest {
         File txtFile = new File("src/main/java/com/maartenmusic/day16/inputRules.txt");
         List<Rule> rules = TxtFileReaders.toRules(txtFile);
         rules.forEach(System.out::println);
+    }
+
+    @Test
+    void toCubes() {
+        File txtFile = new File(FilePathGenerator.generate("day17"));
+        List<ConwayCube> cubes = TxtFileReaders.toConwayCubes(txtFile);
+        cubes.forEach(System.out::println);
     }
 }

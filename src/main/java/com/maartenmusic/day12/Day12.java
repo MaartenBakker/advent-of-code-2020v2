@@ -14,7 +14,7 @@ public class Day12 {
     }
 
     private static int getResultPart1() {
-        File txtFile = new File(FilePathGenerator.getFilePath("day12"));
+        File txtFile = new File(FilePathGenerator.generate("day12"));
         List<ShipAction> shipActions = TxtFileReaders.toShipActions(txtFile);
 
         Ship unsinkableII = new Ship();
@@ -23,7 +23,7 @@ public class Day12 {
     }
 
     private static int getResultPart2() {
-        File txtFile = new File(FilePathGenerator.getFilePath("day12"));
+        File txtFile = new File(FilePathGenerator.generate("day12"));
         List<ShipAction> shipActions = TxtFileReaders.toShipActions(txtFile);
 
         Ship unsinkableIII = new WayPointShip();

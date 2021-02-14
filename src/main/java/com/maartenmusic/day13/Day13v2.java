@@ -10,7 +10,7 @@ import java.util.List;
 public class Day13v2 {
 
     public static void main(String[] args) {
-        File txtFile = new File(FilePathGenerator.getFilePath("day13"));
+        File txtFile = new File(FilePathGenerator.generate("day13"));
         System.out.println(resultOfPart2(txtFile));
     }
 

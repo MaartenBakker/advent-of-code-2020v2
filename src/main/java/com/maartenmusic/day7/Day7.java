@@ -21,7 +21,7 @@ public class Day7 {
     public static void main(String[] args) {
 
         bagCount = 0;
-        File txtFile = new File(FilePathGenerator.getFilePath("day7"));
+        File txtFile = new File(FilePathGenerator.generate("day7"));
 
         printResultOfPart1(txtFile);
         printResultOfPart2(txtFile);

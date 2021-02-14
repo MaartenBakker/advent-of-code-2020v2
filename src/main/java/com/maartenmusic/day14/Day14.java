@@ -10,7 +10,7 @@ public class Day14 {
 
     public static void main(String[] args) {
 
-        File txtFile = new File(FilePathGenerator.getFilePath("day14"));
+        File txtFile = new File(FilePathGenerator.generate("day14"));
         System.out.println(getResultOfPart1(txtFile));
         System.out.println(getResultOfPart2(txtFile));
 

@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 public class Day6 {
 
     public static void main(String[] args) {
-        File txtFile = new File(FilePathGenerator.getFilePath("day6"));
+        File txtFile = new File(FilePathGenerator.generate("day6"));
 
         List<List<String>> data = TxtFileReaders.alineasToStrings2d(txtFile);
 

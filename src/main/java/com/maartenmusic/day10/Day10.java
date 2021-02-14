@@ -12,7 +12,7 @@ public class Day10 {
 
     public static void main(String[] args) {
 
-        File txtFile = new File(FilePathGenerator.getFilePath("day10"));
+        File txtFile = new File(FilePathGenerator.generate("day10"));
         List<Integer> data = TxtFileReaders.toIntegers(txtFile);
 
         data.add(0);

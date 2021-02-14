@@ -1,11 +1,14 @@
 package com.maartenmusic.day17;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class PocketDimension {
+    @Getter
     private final List<ConwayCube> activeCubes = new ArrayList<>();
     private final Set<ConwayCube> potentialActives = new HashSet<>();
     private final List<ConwayCube> toBeDeactivated = new ArrayList<>();
@@ -20,20 +23,21 @@ public class PocketDimension {
         determineActivations();
         determineDeactivations();
         processChanges();
+        clearState();
     }
 
 
     private void determinePotentialActives() {
-        activeCubes.forEach(ConwayCube::findNeighbours);
         for (ConwayCube activeCube : activeCubes) {
+            activeCube.findNeighbours();
             potentialActives.addAll(activeCube.getNeighbours());
         }
         potentialActives.removeAll(activeCubes);
     }
 
     private void determineActivations() {
-        potentialActives.forEach(ConwayCube::findNeighbours);
         for (ConwayCube inactiveCube : potentialActives) {
+            inactiveCube.findNeighbours();
             long activeNeighbourCount = getActiveNeighbourCount(inactiveCube);
 
             if (activeNeighbourCount == 3) {
@@ -43,8 +47,8 @@ public class PocketDimension {
     }
 
     private void determineDeactivations() {
-        activeCubes.forEach(ConwayCube::findNeighbours);
         for (ConwayCube activeCube : activeCubes) {
+            activeCube.findNeighbours();
             long activeNeighbourCount = getActiveNeighbourCount(activeCube);
 
             if (activeNeighbourCount != 2 && activeNeighbourCount != 3) {
@@ -56,6 +60,12 @@ public class PocketDimension {
     private void processChanges() {
         activeCubes.addAll(toBeActivated);
         activeCubes.removeAll(toBeDeactivated);
+    }
+
+    private void clearState() {
+        potentialActives.clear();
+        toBeActivated.clear();
+        toBeDeactivated.clear();
     }
 
     private long getActiveNeighbourCount(ConwayCube conwayCube) {
