@@ -8,6 +8,7 @@ import com.maartenmusic.day14.DockingInstruction;
 import com.maartenmusic.day16.Rule;
 import com.maartenmusic.day16.Ticket;
 import com.maartenmusic.day17.ConwayCube;
+import com.maartenmusic.day17.Cube;
 import com.maartenmusic.day8.Instruction;
 import org.junit.jupiter.api.Test;
 
@@ -137,7 +138,14 @@ class TxtFileReadersTest {
     @Test
     void toCubes() {
         File txtFile = new File(FilePathGenerator.generate("day17"));
-        List<ConwayCube> cubes = TxtFileReaders.toConwayCubes(txtFile);
+        List<Cube> cubes = TxtFileReaders.toConwayCubes(txtFile);
+        cubes.forEach(System.out::println);
+    }
+
+    @Test
+    void toHyperCubes() {
+        File txtFile = new File(FilePathGenerator.generate("day17"));
+        List<Cube> cubes = TxtFileReaders.toConwayHyperCubes(txtFile);
         cubes.forEach(System.out::println);
     }
 }

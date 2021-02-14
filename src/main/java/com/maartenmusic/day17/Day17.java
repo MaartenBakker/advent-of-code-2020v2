@@ -11,9 +11,7 @@ public class Day17 {
     public static void main(String[] args) {
         //part 1
         File txtFile = new File(FilePathGenerator.generate("day17"));
-//        File txtFile = new File("src/main/java/com/maartenmusic/day17/testInput.txt");
-        List<ConwayCube> startingCubes = TxtFileReaders.toConwayCubes(txtFile);
-        
+        List<Cube> startingCubes = TxtFileReaders.toConwayCubes(txtFile);
         PocketDimension pocketDimension = new PocketDimension();
         pocketDimension.addActiveCubes(startingCubes);
 
@@ -22,5 +20,17 @@ public class Day17 {
         }
 
         System.out.println(pocketDimension.getActiveCubes().size());
+
+        //part 2
+        startingCubes = TxtFileReaders.toConwayHyperCubes(txtFile);
+        pocketDimension = new PocketDimension();
+        pocketDimension.addActiveCubes(startingCubes);
+
+        for (int i = 0; i < 6; i++) {
+            pocketDimension.changeState();
+        }
+
+        System.out.println(pocketDimension.getActiveCubes().size());
+
     }
 }

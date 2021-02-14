@@ -9,12 +9,12 @@ import java.util.Set;
 
 public class PocketDimension {
     @Getter
-    private final List<ConwayCube> activeCubes = new ArrayList<>();
-    private final Set<ConwayCube> potentialActives = new HashSet<>();
-    private final List<ConwayCube> toBeDeactivated = new ArrayList<>();
-    private final List<ConwayCube> toBeActivated = new ArrayList<>();
+    private final List<Cube> activeCubes = new ArrayList<>();
+    private final Set<Cube> potentialActives = new HashSet<>();
+    private final List<Cube> toBeDeactivated = new ArrayList<>();
+    private final List<Cube> toBeActivated = new ArrayList<>();
 
-    public void addActiveCubes(List<ConwayCube> conwayCubes) {
+    public void addActiveCubes(List<Cube> conwayCubes) {
         this.activeCubes.addAll(conwayCubes);
     }
 
@@ -28,7 +28,7 @@ public class PocketDimension {
 
 
     private void determinePotentialActives() {
-        for (ConwayCube activeCube : activeCubes) {
+        for (Cube activeCube : activeCubes) {
             activeCube.findNeighbours();
             potentialActives.addAll(activeCube.getNeighbours());
         }
@@ -36,7 +36,7 @@ public class PocketDimension {
     }
 
     private void determineActivations() {
-        for (ConwayCube inactiveCube : potentialActives) {
+        for (Cube inactiveCube : potentialActives) {
             inactiveCube.findNeighbours();
             long activeNeighbourCount = getActiveNeighbourCount(inactiveCube);
 
@@ -47,7 +47,7 @@ public class PocketDimension {
     }
 
     private void determineDeactivations() {
-        for (ConwayCube activeCube : activeCubes) {
+        for (Cube activeCube : activeCubes) {
             activeCube.findNeighbours();
             long activeNeighbourCount = getActiveNeighbourCount(activeCube);
 
@@ -68,7 +68,7 @@ public class PocketDimension {
         toBeDeactivated.clear();
     }
 
-    private long getActiveNeighbourCount(ConwayCube conwayCube) {
+    private long getActiveNeighbourCount(Cube conwayCube) {
         return conwayCube
                 .getNeighbours()
                 .stream()

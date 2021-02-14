@@ -2,20 +2,20 @@ package com.maartenmusic.day17;
 
 import com.maartenmusic.util.Coordinates3D;
 import lombok.Getter;
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class ConwayCube {
+public class ConwayCube implements Cube {
     private final Coordinates3D coordinates3D;
-    private final List<ConwayCube> neighbours = new ArrayList<>();
+    private final List<Cube> neighbours = new ArrayList<>();
 
     public ConwayCube(Coordinates3D coordinates3D) {
         this.coordinates3D = coordinates3D;
     }
 
+    @Override
     public void findNeighbours() {
         neighbours.clear();
         for (int x = -1; x <= 1; x++) {

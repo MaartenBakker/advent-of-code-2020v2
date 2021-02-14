@@ -7,21 +7,23 @@ import lombok.ToString;
 @Getter
 @ToString
 @AllArgsConstructor
-public class Coordinates3D  {
+public class Coordinates4D {
     private final int x;
     private final int y;
     private final int z;
+    private final int w;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Coordinates3D)) return false;
+        if (!(o instanceof Coordinates4D)) return false;
 
-        Coordinates3D that = (Coordinates3D) o;
+        Coordinates4D that = (Coordinates4D) o;
 
         if (x != that.x) return false;
         if (y != that.y) return false;
-        return z == that.z;
+        if (z != that.z) return false;
+        return w == that.w;
     }
 
     @Override
@@ -29,6 +31,7 @@ public class Coordinates3D  {
         int result = x;
         result = 31 * result + y;
         result = 31 * result + z;
+        result = 31 * result + w;
         return result;
     }
 }
